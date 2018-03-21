@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.ylfcf.ppp"
+          android:versionCode="166"
+          android:versionName="1.6.6">
+
+    <uses-sdk
+        android:minSdkVersion="17"
+        android:targetSdkVersion="26" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
+
+    <!-- 权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <!-- 检测联网方式，区分用户设备使用的是2G、3G或是WiFi -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 获取用户设备的mac地址，在平板设备上，无法通过imei标示设备，我们会将mac地址作为用户的唯一标识 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 获取用户设备的IMEI，通过IMEI和mac来唯一的标识用户。 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+
+    <!-- 【必选】用以设置前台是否显示通知 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+
+    <!-- 消息推送可选 -->
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_ADDED" />
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_CHANGED" />
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_INSTALL" />
+    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_REPLACED" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <application
+        tools:replace="Android:icon, android:theme"
+        android:name=".ui.YLFApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:largeHeap="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.SplashActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppMainStartLoad">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.IntroductionActivity"
+            android:screenOrientation="portrait" />
+
+        <!--
+         windowSoftInputMode属性不会将布局顶上去
+         android:theme="@style/Theme.AppStartLoad"  用户退出登录的时候会出问题
+        -->
+        <activity
+            android:name=".ui.MainFragmentActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppStartLoad"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <activity
+            android:name=".ui.BorrowDetailZXDActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BorrowDetailYXBActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BidZXDActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme"/>
+        <activity
+            android:name=".ui.BidYXBActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.RegisteActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.ForgetPwdActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.GestureEditActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.GestureVerifyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.RechargeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.WithdrawActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.ProductInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.ProductDataActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.ProductSafetyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.UserVerifyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.ModifyLoginPwdActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.FeedbackActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.RechargeResultActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BidSuccessActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.WithdrawListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BindCardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BrandIntroActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.AccountSettingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.FundsDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.GestureSettingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.WithdrawPwdOptionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.WithdrawPwdModifyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.WithdrawPwdGetbackActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.WithdrawSuccessActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.AwardDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.MyGiftsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.MyYuanMoneyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.MyTYJActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.ProductRecordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.ChangeAddressActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.InvitateActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.MyInvitationActivity"
+            android:hardwareAccelerated="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.RegisteAgreementActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.WithdrawDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.LimitPromptActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BannerDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <!--android:process=":webview"-->
+        <activity
+            android:name=".ui.BannerTopicActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme"/>
+        <service
+            android:name=".service.PreloadProcessService"
+            android:process=":webview"/>
+        <activity
+            android:name=".ui.BankVerifyRecActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.YXBIntroActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.YXBBidSuccessActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.YXBTransRecordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <!-- 服务协议 -->
+        <activity
+            android:name=".ui.YXBAgreementActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.MyHongbaoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BidXSBActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.ProductIntroActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.YYYProductDataActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.VIPProductRecordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BorrowDetailXSMBActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BidXSMBActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.ProductIntroXSMBActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.ProductDataXSMBActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.ProductSafetyXSMBActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.ProductInfoXSMBActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.PrizeRegionTempActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BidWDYActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BorrowDetailWDYActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.WDYLendRecordDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.LXFXTempActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.WDYProductDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.RechargeRecordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.RechargeProofActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.SignTopicTempActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.ActivitysRegionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity android:name=".ui.CompUserFriendsActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AnimActivityTheme" />
+
+        <activity
+            android:name=".ui.LXJ5TempActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity android:name=".ui.MyFriendsActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AnimActivityTheme" />
+        <activity android:name=".ui.ChooseJXQActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AnimActivityTheme" />
+        <activity android:name=".ui.BorrowListYJYActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AnimActivityTheme" />
+        <activity android:name=".ui.BorrowDetailYJYActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AnimActivityTheme" />
+        <activity android:name=".ui.BidYJYActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AnimActivityTheme" />
+        <activity android:name=".ui.ProductInfoYJYActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AnimActivityTheme" />
+        <activity android:name=".ui.AccountCenterActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AnimActivityTheme" />
+        <activity android:name=".ui.BannerSimpleTopicActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AnimActivityTheme" />
+        <activity android:name=".ui.RechargeChooseActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AnimActivityTheme" />
+        <activity android:name=".ui.RechargePosActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AnimActivityTheme" />
+        <activity android:name=".ui.RechargePosQRCodeActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AnimActivityTheme" />
+        <activity android:name=".ui.RechargePosInstructionsActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name="com.umeng.socialize.editorpage.ShareActivity"
+            android:excludeFromRecents="true"
+            android:theme="@style/Theme.UMDefault" />
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
+            android:name="com.umeng.qq.tencent.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tencent1105044430" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.umeng.qq.tencent.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+
+        <activity
+            android:name=".sina.WBShareActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!--<activity
+            android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"></activity>-->
+        <activity
+            android:name="com.umeng.socialize.media.WBShareCallBackActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:exported="false"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:launchMode="singleTask"
+            android:name="com.sina.weibo.sdk.share.WbShareTransActivity">
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
+        <!--<service
+            android:name="com.sina.weibo.sdk.net.DownloadService"
+            android:exported="false"/>-->
+
+        <activity
+            android:name=".ui.ProductDataDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.YXBProjectIntroActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.ArticleListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.ArticleDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.CommQuesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.RechargeChannelActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BorrowDetailXSBActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BorrowListZXDActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BorrowDetailYYYActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BidYYYActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BorrowListVIPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.YYYProductDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.YYYProductRecordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.YYYProductCJWTActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.CompactActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.RegisterVIPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BidVIPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BorrowDetailVIPActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.VIPProductCJWTActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.RegisterSucActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BorrowListSRZXActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BorrowDetailSRZXActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BidSRZXActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.SRZXAppointActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.MyJXQActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.UserInvestRecordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.SignActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.RechargeCompActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.AccountSettingCompActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.WithdrawCompActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.ProductIntroXSMBActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.PrizeRegion2TempActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.YQHYTempActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+
+        <!-- 监听通知点击或者忽略处理的广播 -->
+        <receiver
+            android:name="com.umeng.message.NotificationProxyBroadcastReceiver"
+            android:exported="false"></receiver>
+
+        <!-- 友盟的appkey -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="567cf33767e58e2b19000597"></meta-data>
+        <meta-data
+            android:name="UMENG_MESSAGE_SECRET"
+            android:value="bc8973268d3246969f0196a3d474fdc4"></meta-data>
+        <!-- 友盟的渠道统计 -->
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}" />
+        <!-- 用户来源 如果用户来源安卓app，则来源于哪个渠道平台。"官网App安卓版"表示来源于官网 -->
+        <meta-data
+            android:name="USER_FROM_SUB"
+            android:value="${USER_FROM_SUB_VALUE}" />
+
+        <!-- 阿里云热修复 -->
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="24688737-1" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="9ff3b3fc4e09d608a734c0a08b0fe903" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCavu1ZF8OtKQFBRznbymsq8lfu6QNhMZq/G7gio/OA8cG5IC4GC5vng/JhLusPEsG//Ecp90vUPB7n/3dUpQgEYzoqof4mQ6JWwhjbj6WlIh6J693v3p6iaLKwkAS2aq1MAYmmyhJ/XHONWRr+Lf6pWJzIen/0jDMqn00479MDPWSoKOcJJ/S1CrnLNtvdc4GfKza9ywlavj4RxaDMauv2uRmbZJeSrm/hrq7742Js+2kozO38YthaPcP6G2J11OuekX1GnU/Ls6iSDXEk5HQ7RRfz9R0wzoo93gthve0eVgYj9VPQhet2FkHbCwoOmbYpvgGlhO4ym1teHidxucvRAgMBAAECggEAGKYG2mUdpwxcBdDZl3fjoCCf/w8gma+0DXLV3rasx8I6cEl+6zmYKMVsqyw1Bt6e+/ysPTQF4RV+esfHczUiVMiVcEsDV4b4acda/EYiRW5s3N00KcwVCpuQsu0Nwxy04+Fu0qFnVuAcC8zArvIWmVTjDE/u574ZPFXJkCMrQl2ajNraXZ20Yi3Wj7z1g5HL4M/CPaVfX0B0uzk9pgEuvYiE080D7SFMDooqJ+j8w+lNa5XgaOpJ9V6hKDXXexbzUkFs962t1tLUHVgRO7xaVTWEW/ZjVNPQDkhm6PnwUKazIoEO57sXFD5G0A/Ea6x+mbgcK0iVRR0SI0KaHdL0fQKBgQDUGgXegjD3XeBRiKB6LF+1GJH2LFNGZMTnZ38dQz4gUqct8G1eI66E+4LaEyj8HmYzM0SdmscsupHZv4T6O8jgYoHX7RkNabebwFrvdNGo9BJKTME7PRSnn523RauHhA8q4OnxUnmF/B/EiGelJqcqy+4S3B5mDETDpex96t4IvwKBgQC6xfd/sxSpt+386C5rry5x5ZY1xJvPgGNtYbYZOIWHCAVnoDpzIjYcGNsPGfFwKvkitgJw1LQyaa5auMK0OfzHvbj/yhzB/YUvwsIQlzE51yeVCpPovWDxD2QgxdnpjHhAfVT4MEKfUamCV4ES9mTRGxdSvAqUd8v0oXFQ1vM/bwKBgCXngKUDHz0VycDIaeVriK8UdQFJaphp6cZw+IaCPdgI7VeIYAMy3T1mtTvDsM9dn2YHA3wm7PFRZj9Dur/9byiqcgnklVWQTv/GoHmqps1K0Pn2PZIYmFhcbhMSoFTXhN5k02oNEyqepA67Ucpx3e4IA8PbEpOqHZ/ZRyo5jvSBAoGBAJAEMlGvXpF3l/TZe2HhVKjSZT7UeWhJEWG4ZFeSM7PpRXGgJTG+AYcsy00brgXVvQE84yjpeoEc6CpgKRIbXIUQD+R8jiwvNlGblVSBoJ1+/7B21ZIy5Ns8CPMUXHEvtVHU0n4FiHmc2F3+5zId96MdhqBvCqFstkHNcrjo5evVAoGACSRVvfXD0hIFF8IC1ZmiAma62Qdon2wplB7JQUxCYbfzUb/Jzf3l6y+OVlxM3PqQ2J5ySwzK2LD6wdQIYdu+Y5zzcSGUuz4mQVWa32V6nJYRUwOoIwdhVCJcfqyNY0739jwurtwxOPNQp+lbHYI+MHuriUiPqizPJLbb/2ezcnA=" />
+
+    </application>
+
+</manifest>
