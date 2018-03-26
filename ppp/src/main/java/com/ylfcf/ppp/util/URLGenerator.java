@@ -1,5 +1,7 @@
 package com.ylfcf.ppp.util;
 
+import android.text.TextUtils;
+
 import java.io.UnsupportedEncodingException;
 
 /**
@@ -2280,8 +2282,13 @@ public class URLGenerator {
 	public String[] getCompApplyRegisteURL(String phone,String userFrom,String extensionCode){
 		StringBuffer sb = new StringBuffer();
 		try {
-			sb.append("_URL_=").append(COMP_APPLY_REGISTE_URL).append("&phone=").append(phone).append("&user_from=").
-					append(userFrom).append("&extension_code=").append(extensionCode);
+			if(extensionCode!= null&& !TextUtils.isEmpty(extensionCode)) {
+				sb.append("_URL_=").append(COMP_APPLY_REGISTE_URL).append("&phone=").append(phone).append("&user_from=").
+						append(userFrom).append("&extension_code=").append(extensionCode);
+			}else {
+				sb.append("_URL_=").append(COMP_APPLY_REGISTE_URL).append("&phone=").append(phone).append("&user_from=").
+						append(userFrom);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
