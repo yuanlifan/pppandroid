@@ -3,6 +3,7 @@ package com.ylfcf.ppp.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -69,12 +70,18 @@ public class BidSuccessActivity extends BaseActivity implements OnClickListener{
 			if(mBaseInfo.getmInvestResultInfo().getRed_bag_value() != null && !"".equals(mBaseInfo.getmInvestResultInfo().getRed_bag_value())
 					&& !"0".equals(mBaseInfo.getmInvestResultInfo().getRed_bag_value())){
 				promptTV1.setVisibility(View.VISIBLE);
-				promptText1 = "恭喜您获得<font color=\"#FD7323\">" + mBaseInfo.getmInvestResultInfo().getRed_bag_value() + "元" +
-						"</font>红包，可前往我的账户-奖励明细-我的红包查看。";
-				if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-					promptTV1.setText(Html.fromHtml(promptText1,Html.FROM_HTML_MODE_LEGACY));
-				} else {
-					promptTV1.setText(Html.fromHtml(promptText1));
+				String money = mBaseInfo.getmInvestResultInfo().getRed_bag_value();
+				if(money!=null && !TextUtils.isEmpty(money) && !money.equals("null")) {
+					promptText1 = "恭喜您获得<font color=\"#FD7323\">" + mBaseInfo.getmInvestResultInfo().getRed_bag_value() + "元" +
+							"</font>红包，可前往我的账户-奖励明细-我的红包查看。";
+					if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+						promptTV1.setText(Html.fromHtml(promptText1,Html.FROM_HTML_MODE_LEGACY));
+					} else {
+						promptTV1.setText(Html.fromHtml(promptText1));
+					}
+					promptTV1.setVisibility(View.VISIBLE);
+				}else {
+					promptTV1.setVisibility(View.GONE);
 				}
 			}
 		}else{
