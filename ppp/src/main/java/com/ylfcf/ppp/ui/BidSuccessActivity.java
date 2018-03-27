@@ -72,7 +72,9 @@ public class BidSuccessActivity extends BaseActivity implements OnClickListener{
 				promptTV1.setVisibility(View.VISIBLE);
 				String money = mBaseInfo.getmInvestResultInfo().getRed_bag_value();
 				if(money!=null && !TextUtils.isEmpty(money) && !money.equals("null")) {
-					promptText1 = "恭喜您获得<font color=\"#FD7323\">" + mBaseInfo.getmInvestResultInfo().getRed_bag_value() + "元" +
+//					promptText1 = "恭喜您获得<font color=\"#FD7323\">" + mBaseInfo.getmInvestResultInfo().getRed_bag_value() + "元" +
+//							"</font>红包，可前往我的账户-奖励明细-我的红包查看。";
+					promptText1 = "恭喜您获得<font color=\"#FD7323\">" + money + "元" +
 							"</font>红包，可前往我的账户-奖励明细-我的红包查看。";
 					if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
 						promptTV1.setText(Html.fromHtml(promptText1,Html.FROM_HTML_MODE_LEGACY));
