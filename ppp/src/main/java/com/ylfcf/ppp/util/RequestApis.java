@@ -117,7 +117,7 @@ public class RequestApis {
 					}
 				} else {
 					//请求失败，如网络原因等等
-					bindindListener.isBinding(false, info.getMsg());
+					bindindListener.isBinding(false, "失败");
 				} 
 			}
 		});

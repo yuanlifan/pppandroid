@@ -19,7 +19,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.ylfcf.utils.Utils;
 import com.ylfcf.ppp.R;
 import com.ylfcf.ppp.async.AsyncGetLCSName;
 import com.ylfcf.ppp.async.AsyncHuiFuRMBAccount;
@@ -804,6 +806,16 @@ public class UserPersonalFragment extends BaseFragment implements View.OnClickLi
                     }
                     startActivity(intent);
                 }else{
+                   try{
+                       if(((String) object).equals("失败")) {
+                           if("初始化".equals(type)){
+                               Util.toastLong(mContext,"网络已断开");
+                               return;
+                           }
+                       }
+                   }catch (Exception e){
+
+                   }
                     if("初始化".equals(type)){
                         initUserInfoData(true,false);
                         return;
