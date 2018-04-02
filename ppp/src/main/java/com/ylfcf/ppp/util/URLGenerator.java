@@ -15,9 +15,9 @@ public class URLGenerator {
 //	private static final String API2_DOMAIN_URL = "http://api.ylfcf.com";//
 
 //	//正式环境HTTPS
-	private static final String API_DOMAIN_URL = "https://www.ylfcf.com";//API环境
-	private static final String WAP_DOMAIN_URL = "https://wap.ylfcf.com";//WAP环境
-	private static final String API2_DOMAIN_URL = "https://api.ylfcf.com";//
+//	private static final String API_DOMAIN_URL = "https://www.ylfcf.com";//API环境
+//	private static final String WAP_DOMAIN_URL = "https://wap.ylfcf.com";//WAP环境
+//	private static final String API2_DOMAIN_URL = "https://api.ylfcf.com";//
 
 	//https测试环境
 //	private static final String API_DOMAIN_URL = "https://test1.ylfcf.com";//API环境
@@ -30,9 +30,9 @@ public class URLGenerator {
 //	private static final String API2_DOMAIN_URL = "http://api.dev.ylfcf.com";//
 
 	//测试环境
-//	private static final String API_DOMAIN_URL = "http://www.test.ylfcf.com";//API环境
-//	private static final String WAP_DOMAIN_URL = "http://wap.test.ylfcf.com";//WAP环境
-//	private static final String API2_DOMAIN_URL = "http://api.dev.ylfcf.com";//
+	private static final String API_DOMAIN_URL = "http://www.test.ylfcf.com";//API环境
+	private static final String WAP_DOMAIN_URL = "http://wap.test.ylfcf.com";//WAP环境
+	private static final String API2_DOMAIN_URL = "http://api.dev.ylfcf.com";//
 
 	//朱礼涛开发环境
 //	private static final String API_DOMAIN_URL = "http://www.ylf.com";//API环境

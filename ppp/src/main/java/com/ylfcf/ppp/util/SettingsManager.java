@@ -14,6 +14,7 @@ import com.ylfcf.ppp.R;
 import com.ylfcf.ppp.entity.BankInfo;
 import com.ylfcf.ppp.entity.BaseInfo;
 import com.ylfcf.ppp.entity.ProductInfo;
+import com.ylfcf.ppp.ui.MainFragmentActivity;
 import com.ylfcf.ppp.util.Constants.UserType;
 
 import java.text.SimpleDateFormat;
@@ -170,7 +171,7 @@ public class SettingsManager extends DefaultPreferences {
 	/**
 	 * 申请提现 --  企业
 	 */
-	private static final String SMS_APPLY_CASH_COMP_TEMP = "a:2:{s:11:\"VERIFY_CODE\";s:4:\"AUTHCODE\";s:9:\"REAL_NAME\";s:12:\"USERNAME\";}";
+	private static final String SMS_APPLY_CASH_COMP_TEMP = "a:2:{s:11:\"VERIFY_CODE\";s:4:\"AUTHCODE\";s:9:\"REAL_NAME\";s:NAMELENGTH:\"USERNAME\";}";
 	
 	private static final String SMS_APPLY_CASH_TEMP_DEFAULT = "a:2:{s:11:\"VERIFY_CODE\";s:4:\"AUTHCODE\";s:9:\"REAL_NAME\";s:4:\"USERNAME\";}";
 	
@@ -949,8 +950,9 @@ public class SettingsManager extends DefaultPreferences {
 	 */
 	public static String[] getSMSWithdrawApplyCompParams(String username){
 		String authCode = getSMSAuthCode();
-		String params = SMS_APPLY_CASH_COMP_TEMP.replace("USERNAME", username).replace("AUTHCODE", authCode);
-		return new String[]{authCode,params};	
+//		String params = SMS_APPLY_CASH_COMP_TEMP.replace("USERNAME", username).replace("AUTHCODE", authCode);
+		String params = SMS_APPLY_CASH_COMP_TEMP.replace("USERNAME", username).replace("NAMELENGTH",String.valueOf(username.length()*3)).replace("AUTHCODE", authCode);
+		return new String[]{authCode,params};
 	}
 	
 	/**
@@ -1027,4 +1029,16 @@ public class SettingsManager extends DefaultPreferences {
 		}
 		return false;
 	}
+
+	public static void setReal_name(Context context, String real_name) {
+		if(real_name!=null){
+			DefaultPreferences.setString(context,"real_name", real_name);
+		}
+	}
+
+	public static String getReal_name(Context context){
+		String username = DefaultPreferences.getString(context,"real_name", "");
+		return username;
+	}
+
 }

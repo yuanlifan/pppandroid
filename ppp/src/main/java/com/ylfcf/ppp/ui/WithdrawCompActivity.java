@@ -240,7 +240,8 @@ public class WithdrawCompActivity extends BaseActivity implements
 	 */
 	private void sendSMScode() {
 		String params[] = null;
-		String userName = SettingsManager.getUserName(getApplicationContext());
+//		String userName = SettingsManager.getUserName(getApplicationContext());
+		String userName = SettingsManager.getReal_name(getApplicationContext());
 		String userPhone = SettingsManager.getCompPhone(getApplicationContext());
 		if (userName != null && !"".equals(userName)) {
 			params = SettingsManager.getSMSWithdrawApplyCompParams(userName);// 拼接短信验证码格式

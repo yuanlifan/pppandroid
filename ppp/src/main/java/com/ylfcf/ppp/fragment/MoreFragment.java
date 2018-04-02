@@ -234,7 +234,8 @@ public class MoreFragment extends BaseFragment implements OnClickListener{
 			SettingsManager.setUserRegTime(mainActivity, "");
 			SettingsManager.setUserType(mainActivity, "");
 			SettingsManager.setCompPhone(mainActivity, "");
-			
+			SettingsManager.setReal_name(mainActivity, "");
+
 			new Handler().postDelayed(new Runnable(){
 				@Override
 				public void run() {

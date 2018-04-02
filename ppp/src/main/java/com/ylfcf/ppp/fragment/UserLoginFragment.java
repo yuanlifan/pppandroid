@@ -108,6 +108,9 @@ public class UserLoginFragment extends BaseFragment implements View.OnClickListe
                         SettingsManager.setUserRegTime(mainActivity, mUserInfo.getReg_time());
                         SettingsManager.setUserType(mainActivity, UserType.USER_COMPANY);
                         SettingsManager.setCompPhone(mainActivity, mUserInfo.getCo_mobile());
+
+                        SettingsManager.setReal_name(mainActivity, mUserInfo.getReal_name());
+
                         addPhoneInfo(mUserInfo.getId(), mUserInfo.getCo_phone(), "", "");
                         onLoginSuc.onLoginSuc(mUserInfo);
                     }
