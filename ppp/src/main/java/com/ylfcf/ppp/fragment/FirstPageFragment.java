@@ -89,12 +89,12 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener,O
 	private static final int REFRESH_NOTICE = 5703;
 
 	private MainFragmentActivity mainActivity;
-	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+//	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 	private SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	private List<ImageView> views = new ArrayList<ImageView>();
+//	private List<ImageView> views = new ArrayList<ImageView>();
 	private List<BannerInfo> bannerList = new ArrayList<BannerInfo>();
-	private ViewPager subjectViewPager;// 系列标的viewpager
-	private Button hytjBtn,hdzqBtn;//壕友推荐 活动专区按钮
+//	private ViewPager subjectViewPager;// 系列标的viewpager
+//	private Button hytjBtn,hdzqBtn;//壕友推荐 活动专区按钮
 	private Banner mBanner;
 	private LoadingDialog mLoadingDialog;
 
@@ -222,10 +222,10 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener,O
 		builder.setSpan(orangeSpan, 8,12, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 		tipsText.setText(builder);
 
-		hytjBtn = (Button)view.findViewById(R.id.first_page_fragment_hytj_btn);
-		hytjBtn.setOnClickListener(this);
-		hdzqBtn = (Button)view.findViewById(R.id.first_page_fragment_hdzq_btn);
-		hdzqBtn.setOnClickListener(this);
+//		hytjBtn = (Button)view.findViewById(R.id.first_page_fragment_hytj_btn);
+//		hytjBtn.setOnClickListener(this);
+//		hdzqBtn = (Button)view.findViewById(R.id.first_page_fragment_hdzq_btn);
+//		hdzqBtn.setOnClickListener(this);
 
 		defaultImg = (ImageView) view
 				.findViewById(R.id.first_page_fragment_default_img);
@@ -237,10 +237,10 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener,O
 		noticeTime = (TextView) view
 				.findViewById(R.id.first_page_fragment_notice_time);
 
-		subjectViewPager = (ViewPager) view
-				.findViewById(R.id.first_page_fragment_viewpager);
-		subjectViewPager.setAdapter(new SubjectPagerAdapter(viewsList));
-		subjectViewPager.setCurrentItem(0);
+//		subjectViewPager = (ViewPager) view
+//				.findViewById(R.id.first_page_fragment_viewpager);
+//		subjectViewPager.setAdapter(new SubjectPagerAdapter(viewsList));
+//		subjectViewPager.setCurrentItem(0);
 		mBanner = (Banner) view.findViewById(R.id.first_page_fragment_banner);
 		mBanner.setOnBannerListener(this);
 		mainActivity.setOnRequestBorrowListener(
@@ -458,15 +458,15 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener,O
 				if(firstPageZXDListener != null)
 					firstPageZXDListener.back();
 				break;
-			case R.id.first_page_fragment_hytj_btn:
-				//壕友推荐
-				shared();
-				break;
-			case R.id.first_page_fragment_hdzq_btn:
-				//活动专区
-				Intent intentHDZQ = new Intent(mainActivity, ActivitysRegionActivity.class);
-				mainActivity.startActivity(intentHDZQ);
-				break;
+//			case R.id.first_page_fragment_hytj_btn:
+//				//壕友推荐
+//				shared();
+//				break;
+//			case R.id.first_page_fragment_hdzq_btn:
+//				//活动专区
+//				Intent intentHDZQ = new Intent(mainActivity, ActivitysRegionActivity.class);
+//				mainActivity.startActivity(intentHDZQ);
+//				break;
 			default:
 				break;
 		}
@@ -476,7 +476,7 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener,O
 		String userId = SettingsManager.getUserId(mainActivity.getApplicationContext());
 		if(userId != null && !"".equals(userId)){
 			//已登录
-			hytjBtn.setEnabled(false);
+//			hytjBtn.setEnabled(false);
 			checkIsVerify("邀请有奖");
 		}else{
 			//未登录
@@ -499,7 +499,7 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener,O
 					mLoadingDialog.dismiss();
 				}
 				if("邀请有奖".equals(type)){
-					hytjBtn.setEnabled(true);
+//					hytjBtn.setEnabled(true);
 					Intent intent = new Intent();
 					intent.setClass(mainActivity, InvitateActivity.class);
 					intent.putExtra("is_verify", flag);
