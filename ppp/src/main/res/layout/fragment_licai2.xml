@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/child_background"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/licai_fragment_toplayout"
+        layout="@layout/common_topbar" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_measure_56dp">
+
+        <RelativeLayout
+            android:background="@color/white"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="综合排序"
+                android:textSize="@dimen/common_measure_17dp"
+                android:textColor="@color/common_topbar_bg_color"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_alignParentBottom="true"
+                android:background="@color/common_topbar_bg_color"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_measure_3dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="@color/child_background"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="按利率"
+                android:textSize="@dimen/common_measure_17dp"
+                android:drawableRight="@drawable/icon_sort_comment"
+                android:drawablePadding="@dimen/common_measure_6dp"
+                android:textColor="@color/gray4"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:visibility="gone"
+                android:layout_alignParentBottom="true"
+                android:background="@color/common_topbar_bg_color"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_measure_3dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="@color/child_background"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="按期限"
+                android:textSize="@dimen/common_measure_17dp"
+                android:drawableRight="@drawable/icon_sort_comment"
+                android:drawablePadding="@dimen/common_measure_6dp"
+                android:textColor="@color/gray4"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:visibility="gone"
+                android:layout_alignParentBottom="true"
+                android:background="@color/common_topbar_bg_color"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_measure_2dp"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:background="@color/common.emptybackground"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="@dimen/common_measure_10dp"
+        android:layout_height="@dimen/common_measure_1dp"/>
+
+    <com.ylfcf.ppp.ptr.PtrClassicFrameLayout
+        xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/licai_fragment_refresh_layout"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        cube_ptr:ptr_duration_to_close="200"
+        cube_ptr:ptr_duration_to_close_header="1000"
+        cube_ptr:ptr_keep_header_when_refresh="true"
+        cube_ptr:ptr_pull_to_fresh="false"
+        cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
+        cube_ptr:ptr_resistance="1.7" >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </com.ylfcf.ppp.ptr.PtrClassicFrameLayout>
+
+</LinearLayout>

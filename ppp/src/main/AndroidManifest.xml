@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.ylfcf.ppp"
-          android:versionCode="167"
-          android:versionName="1.6.7">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.ylfcf.ppp"
+    android:versionCode="167"
+    android:versionName="1.6.7">
 
     <uses-sdk
         android:minSdkVersion="17"
@@ -44,7 +44,6 @@
 
     <!-- 【必选】用以设置前台是否显示通知 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
-
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
@@ -58,14 +57,14 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application
-        tools:replace="Android:icon, android:theme"
         android:name=".ui.YLFApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
         android:largeHeap="true"
-        android:theme="@style/AppTheme">
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="Android:icon, android:theme">
         <activity
             android:name=".ui.SplashActivity"
             android:label="@string/app_name"
@@ -73,10 +72,10 @@
             android:theme="@style/Theme.AppMainStartLoad">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.IntroductionActivity"
             android:screenOrientation="portrait" />
@@ -106,7 +105,7 @@
         <activity
             android:name=".ui.BidZXDActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AnimActivityTheme"/>
+            android:theme="@style/AnimActivityTheme" />
         <activity
             android:name=".ui.BidYXBActivity"
             android:screenOrientation="portrait"
@@ -257,14 +256,16 @@
             android:name=".ui.BannerDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AnimActivityTheme" />
-        <!--android:process=":webview"-->
+        <!-- android:process=":webview" -->
         <activity
             android:name=".ui.BannerTopicActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AnimActivityTheme"/>
+            android:theme="@style/AnimActivityTheme" />
+
         <service
             android:name=".service.PreloadProcessService"
-            android:process=":webview"/>
+            android:process=":webview" />
+
         <activity
             android:name=".ui.BankVerifyRecActivity"
             android:screenOrientation="portrait"
@@ -370,50 +371,62 @@
             android:name=".ui.ActivitysRegionActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AnimActivityTheme" />
-        <activity android:name=".ui.CompUserFriendsActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/AnimActivityTheme" />
-
+        <activity
+            android:name=".ui.CompUserFriendsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
         <activity
             android:name=".ui.LXJ5TempActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AnimActivityTheme" />
-        <activity android:name=".ui.MyFriendsActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/AnimActivityTheme" />
-        <activity android:name=".ui.ChooseJXQActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/AnimActivityTheme" />
-        <activity android:name=".ui.BorrowListYJYActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/AnimActivityTheme" />
-        <activity android:name=".ui.BorrowDetailYJYActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/AnimActivityTheme" />
-        <activity android:name=".ui.BidYJYActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/AnimActivityTheme" />
-        <activity android:name=".ui.ProductInfoYJYActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/AnimActivityTheme" />
-        <activity android:name=".ui.AccountCenterActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/AnimActivityTheme" />
-        <activity android:name=".ui.BannerSimpleTopicActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/AnimActivityTheme" />
-        <activity android:name=".ui.RechargeChooseActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/AnimActivityTheme" />
-        <activity android:name=".ui.RechargePosActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/AnimActivityTheme" />
-        <activity android:name=".ui.RechargePosQRCodeActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/AnimActivityTheme" />
-        <activity android:name=".ui.RechargePosInstructionsActivity"
-                  android:screenOrientation="portrait"
-                  android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.MyFriendsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.ChooseJXQActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BorrowListYJYActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BorrowDetailYJYActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BidYJYActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.ProductInfoYJYActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.AccountCenterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.BannerSimpleTopicActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.RechargeChooseActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.RechargePosActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.RechargePosQRCodeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+        <activity
+            android:name=".ui.RechargePosInstructionsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"
             android:excludeFromRecents="true"
@@ -424,26 +437,24 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
         <activity
             android:name="com.umeng.qq.tencent.AuthActivity"
             android:launchMode="singleTask"
-            android:noHistory="true" >
-
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="tencent1105044430" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.umeng.qq.tencent.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>
-
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".sina.WBShareActivity"
             android:configChanges="keyboardHidden|orientation"
@@ -454,33 +465,35 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <!--<activity
+        <!--
+            <activity
             android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
             android:configChanges="keyboardHidden|orientation"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"></activity>-->
+            android:windowSoftInputMode="adjustResize"></activity>
+        -->
         <activity
             android:name="com.umeng.socialize.media.WBShareCallBackActivity"
             android:configChanges="keyboardHidden|orientation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:exported="false"
-            android:screenOrientation="portrait" >
-        </activity>
-
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
         <activity
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:name="com.sina.weibo.sdk.share.WbShareTransActivity"
             android:launchMode="singleTask"
-            android:name="com.sina.weibo.sdk.share.WbShareTransActivity">
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
 
-        <!--<service
+        <!--
+            <service
             android:name="com.sina.weibo.sdk.net.DownloadService"
-            android:exported="false"/>-->
+            android:exported="false"/>
+        -->
 
         <activity
             android:name=".ui.ProductDataDetailsActivity"
@@ -615,18 +628,22 @@
             android:screenOrientation="portrait"
             android:theme="@style/AnimActivityTheme" />
 
+        <activity android:name=".ui.InvestmentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AnimActivityTheme" />
+
         <!-- 监听通知点击或者忽略处理的广播 -->
         <receiver
             android:name="com.umeng.message.NotificationProxyBroadcastReceiver"
-            android:exported="false"></receiver>
+            android:exported="false" />
 
         <!-- 友盟的appkey -->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="567cf33767e58e2b19000597"></meta-data>
+            android:value="567cf33767e58e2b19000597" />
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
-            android:value="bc8973268d3246969f0196a3d474fdc4"></meta-data>
+            android:value="bc8973268d3246969f0196a3d474fdc4" />
         <!-- 友盟的渠道统计 -->
         <meta-data
             android:name="UMENG_CHANNEL"

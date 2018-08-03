@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ylfcf.ppp.fragment.FirstPageFragment;
+import com.ylfcf.ppp.fragment.Licai2Fragment;
 import com.ylfcf.ppp.fragment.LicaiFragment;
 import com.ylfcf.ppp.fragment.MoreFragment;
 import com.ylfcf.ppp.fragment.UserFragment;
@@ -62,7 +63,7 @@ public class MainFragmentAdapter extends FragmentStatePagerAdapter{
 				fragment = FirstPageFragment.newInstance(index,listener,hytjListener);
 				break;
 			case BORROWLIST_FRAGMENT_FRAG:
-				fragment = LicaiFragment.newInstance(index);
+				fragment = Licai2Fragment.newInstance(index);
 				break;
 			case USER_FRAGMENT_FRAG:
 				fragment = UserFragment.newInstance(index,onLoginSucListener);

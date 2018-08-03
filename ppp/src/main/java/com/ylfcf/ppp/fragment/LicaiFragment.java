@@ -94,7 +94,7 @@ public class LicaiFragment extends BaseFragment implements OnClickListener{
 	private int page = 0;
 	private int pageSize =10;
 	
-	private View rootView;
+ 	private View rootView;
 	private boolean isFirst = true;//是否是第一次请求列表接口，用于缓存数据
 	
 	private Handler handler = new Handler(){
