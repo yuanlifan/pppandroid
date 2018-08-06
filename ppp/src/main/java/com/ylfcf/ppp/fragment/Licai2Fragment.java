@@ -16,11 +16,17 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.ylfcf.ppp.R;
 import com.ylfcf.ppp.adapter.LicaiItemAdapter;
+import com.ylfcf.ppp.async.AsyncInvestmentList;
+import com.ylfcf.ppp.entity.BaseInfo;
+import com.ylfcf.ppp.entity.InvestmentListInfo;
+import com.ylfcf.ppp.inter.Inter;
 import com.ylfcf.ppp.ptr.PtrClassicFrameLayout;
 import com.ylfcf.ppp.ptr.PtrDefaultHandler;
 import com.ylfcf.ppp.ptr.PtrFrameLayout;
 import com.ylfcf.ppp.ptr.PtrHandler;
 import com.ylfcf.ppp.ui.InvestmentActivity;
+import com.ylfcf.ppp.ui.MainFragmentActivity;
+import com.ylfcf.ppp.util.SettingsManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +38,9 @@ public class Licai2Fragment extends BaseFragment {
 
     private PtrClassicFrameLayout mRefreshView;
     private RecyclerView mRecyclerView;
-    private List<String> mList = new ArrayList<>();
-    private LicaiItemAdapter mLicaiItemAdapter;
+    private List<InvestmentListInfo.ListBean> mList = new ArrayList<>();
+    private LicaiItemAdapter     mLicaiItemAdapter;
+    private MainFragmentActivity mainActivity;
 
     /**
      * 创建当前Fragment的实例对象
@@ -59,14 +66,7 @@ public class Licai2Fragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mList.add("");
-        mList.add("");
-        mList.add("");
-        mList.add("");
-        mList.add("");
-        mList.add("");
-        mList.add("");
-        mList.add("");
+        initreFreshLayout();
         mLicaiItemAdapter = new LicaiItemAdapter(R.layout.item_licai_layout, mList);
         mLicaiItemAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
@@ -76,7 +76,6 @@ public class Licai2Fragment extends BaseFragment {
         });
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mRecyclerView.setAdapter(mLicaiItemAdapter);
-        initreFreshLayout();
     }
 
     private void initreFreshLayout() {
@@ -84,7 +83,7 @@ public class Licai2Fragment extends BaseFragment {
         mRefreshView.setPtrHandler(new PtrHandler() {
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
-                mRefreshView.refreshComplete();
+                requestInvestList("order_type","ASC");
             }
 
             @Override
@@ -112,5 +111,31 @@ public class Licai2Fragment extends BaseFragment {
         linearLayout.setVisibility(View.GONE);
     }
 
+    /**
+     * 投资列表 ---- 取前二十条最新的数据
+     *
+     * @param order_by
+     * @param sort
+     */
+    private void requestInvestList(String order_by, String sort) {
+        AsyncInvestmentList investTask = new AsyncInvestmentList(mainActivity,
+                String.valueOf(0), String.valueOf(20), order_by, sort,
+                new Inter.OnCommonInter() {
+                    @Override
+                    public void back(BaseInfo baseInfo) {
+                        if (baseInfo != null) {
+                            int resultCode = SettingsManager
+                                    .getResultCode(baseInfo);
+                            if (resultCode == 0) {
+                                mList.addAll(baseInfo.getInvestmentListInfo().getInvestListData());
+                                mLicaiItemAdapter.notifyDataSetChanged();
+                            }
+                        }
+                        mRefreshView.refreshComplete();
+                    }
+                });
+        investTask.executeAsyncTask(SettingsManager.FULL_TASK_EXECUTOR);
+
+    }
 
 }

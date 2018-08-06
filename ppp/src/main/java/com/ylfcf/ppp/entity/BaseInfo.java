@@ -78,6 +78,16 @@ public class BaseInfo implements java.io.Serializable{
 	private YQYRewardPageInfo mYQYRewardPageInfo;
 	private TLOrderInfo tlOrderInfo;
 
+	private InvestmentListInfo mInvestmentListInfo;
+
+	public InvestmentListInfo getInvestmentListInfo() {
+		return mInvestmentListInfo;
+	}
+
+	public void setInvestmentListInfo(InvestmentListInfo investmentListInfo) {
+		mInvestmentListInfo = investmentListInfo;
+	}
+
 	public TLOrderInfo getTlOrderInfo() {
 		return tlOrderInfo;
 	}

@@ -15,9 +15,9 @@ public class URLGenerator {
 //	private static final String API2_DOMAIN_URL = "http://api.ylfcf.com";//
 
 	//正式环境HTTPS
-	private static final String API_DOMAIN_URL = "https://www.ylfcf.com";//API环境
-	private static final String WAP_DOMAIN_URL = "https://wap.ylfcf.com";//WAP环境
-	private static final String API2_DOMAIN_URL = "https://api.ylfcf.com";//
+//	private static final String API_DOMAIN_URL = "https://www.ylfcf.com";//API环境
+//	private static final String WAP_DOMAIN_URL = "https://wap.ylfcf.com";//WAP环境
+//	private static final String API2_DOMAIN_URL = "https://api.ylfcf.com";//
 
 	//https测试环境
 //	private static final String API_DOMAIN_URL = "https://test1.ylfcf.com";//API环境
@@ -45,10 +45,10 @@ public class URLGenerator {
 //	private static final String API2_DOMAIN_URL = "http://www.api.com";//
 
 	//杨永豪开发环境
-////	private static final String API_DOMAIN_URL = "http://ww.api.com";//API环境
-//	private static final String API_DOMAIN_URL = "http://www.dev_web.com";//API环境
-//	private static final String WAP_DOMAIN_URL = "http://www.ylf_chat.com";//WAP环境
-//	private static final String API2_DOMAIN_URL = "http://api.dev.ylfcf.com";//w
+//	private static final String API_DOMAIN_URL = "http://ww.api.com";//API环境
+	private static final String API_DOMAIN_URL = "http://www.dev_web.com";//API环境
+	private static final String WAP_DOMAIN_URL = "http://www.ylf_chat.com";//WAP环境
+	private static final String API2_DOMAIN_URL = "http://api.dev.ylfcf.com";//w
 
 //	private static final String API_DOMAIN_URL = "http://www.web";//API环境
 //	private static final String WAP_DOMAIN_URL = "http://www.ylf_chat.com";//WAP环境
@@ -170,6 +170,9 @@ public class URLGenerator {
 	private final String ARTICLE_URL = "/article/article/selectOne";// 公告
 	private final String BANNERLIST_URL = "/article/article/selectPhoneBannerList";// banner
 	private final String ARTICLE_TYJLIST_BYSTATUS = "/active/experience/selectListByStatus";// 根据用户id和状态获取体验金列表
+
+	private final String INVESTMENT_LIST_URL = "/p2p/borrow_info/selectListForWeb";// 投资列表页面数据
+
 
 	// 元信宝接口
 	private final String YXB_PRODUCT = "/yxb/product/selectOne";// 产品
@@ -3245,4 +3248,33 @@ public class URLGenerator {
 				append(orderId);
 		return new String[]{BASE_URL, sb.toString()};
 	}
+
+
+//	/**
+//	 * 获取公告、新闻、咨询列表
+//	 *
+//	 * @param order_by
+//	 *            某个字段排序(order_type为默认排序(利率:borrow_interest期限:borrow_period))
+//	 * @param sort
+//	 *            排序方式
+//	 * @param page
+//	 * @param pageSize
+//	 * @return
+//	 * @throws Exception
+//	 */
+	public String[] getInvestmentList(String order_by, String sort, String page,
+									  String pageSize) throws Exception {
+		StringBuffer sb = new StringBuffer();
+		sb.append("_URL_=").append(INVESTMENT_LIST_URL).append("&page=")
+				.append(page).append("&page_size=").append(pageSize);
+		if (order_by != null && !"".equals(order_by)) {
+			sb.append("&order_by=").append(order_by);
+		}
+		if (sort != null && !"".equals(sort)) {
+			sb.append("&sort=").append(sort);
+		}
+		return new String[] { BASE_URL, sb.toString() };
+	}
+
+
 }

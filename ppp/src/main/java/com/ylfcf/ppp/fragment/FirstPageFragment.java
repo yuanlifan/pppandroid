@@ -1,5 +1,6 @@
 package com.ylfcf.ppp.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,16 +20,23 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.ant.liao.GifView;
+import com.bigkoo.convenientbanner.ConvenientBanner;
+import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.bigkoo.convenientbanner.holder.Holder;
+import com.bigkoo.convenientbanner.listener.OnItemClickListener;
+import com.bumptech.glide.Glide;
 import com.ylfcf.ppp.R;
 import com.ylfcf.ppp.async.AsyncArticleList;
 import com.ylfcf.ppp.async.AsyncBanner;
+import com.ylfcf.ppp.async.AsyncInvestmentList;
 import com.ylfcf.ppp.common.FileUtil;
 import com.ylfcf.ppp.entity.ArticleInfo;
 import com.ylfcf.ppp.entity.BannerInfo;
 import com.ylfcf.ppp.entity.BaseInfo;
+import com.ylfcf.ppp.entity.InvestmentListInfo;
 import com.ylfcf.ppp.entity.ProductInfo;
 import com.ylfcf.ppp.entity.YXBProductInfo;
 import com.ylfcf.ppp.entity.YXBProductLogInfo;
@@ -59,17 +67,12 @@ import com.ylfcf.ppp.ui.UserVerifyActivity;
 import com.ylfcf.ppp.ui.YQHYTempActivity;
 import com.ylfcf.ppp.util.Constants.ActivityCode;
 import com.ylfcf.ppp.util.Constants.ArticleType;
-import com.ylfcf.ppp.util.GlideImageLoader;
 import com.ylfcf.ppp.util.RequestApis;
 import com.ylfcf.ppp.util.SettingsManager;
 import com.ylfcf.ppp.util.UMengStatistics;
 import com.ylfcf.ppp.util.YLFLogger;
 import com.ylfcf.ppp.widget.LoadingDialog;
-import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.Transformer;
-import com.youth.banner.listener.OnBannerListener;
-
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -81,7 +84,7 @@ import java.util.List;
  * @author Administrator
  *
  */
-public class FirstPageFragment extends BaseFragment implements OnClickListener,OnBannerListener {
+public class FirstPageFragment extends BaseFragment implements OnClickListener, OnItemClickListener {
 	private static final String className = "FirstPageFragment";
 
 	private static final int REQUEST_ARTICLELIST_WHAT = 5701;// 公告
@@ -91,36 +94,23 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener,O
 	private MainFragmentActivity mainActivity;
 //	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 	private SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//	private List<ImageView> views = new ArrayList<ImageView>();
 	private List<BannerInfo> bannerList = new ArrayList<BannerInfo>();
-//	private ViewPager subjectViewPager;// 系列标的viewpager
-//	private Button hytjBtn,hdzqBtn;//壕友推荐 活动专区按钮
-	private Banner mBanner;
+	private ConvenientBanner mBanner;
 	private LoadingDialog mLoadingDialog;
-
-	/*
-	 * 新手标
-	 */
-	private View xsbLayout;
-	private ImageView xsbImg,yyyImg,yzyImg;
-	private LinearLayout bottomLayout;
-	private GifView mGifView;
-
 	private LinearLayout noticeLayout;// 公告的布局
 	private TextView noticeTitle, noticeTime;
-	private TextView tipsText;
-	private List<View> viewsList = new ArrayList<View>();
-
 	private ImageView defaultImg;
 	private View rootView;
-
 	private int page = 0;
 	private int pageSize = 20;
 	private boolean isFirst = true;// 是否首次进入主页面
-
 	private List<ArticleInfo> articleList;
 	private ProductInfo xsbInfo;
 	private FragmentManager fragmentManager = null;
+
+	private LinearLayout mLl_invest_list1;
+	private LinearLayout mLl_invest_list2;
+	private LinearLayout mLl_invest_list3;
 
 	private Handler hanlder = new Handler() {
 		@Override
@@ -155,7 +145,8 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener,O
 	 */
 	private static OnFirstPageZXDOnClickListener firstPageZXDListener;
 	private static MainFragmentActivity.OnFirstPageHYTJOnClickListener hytjOnClickListener;
-	public static Fragment newInstance(int position, OnFirstPageZXDOnClickListener listener, MainFragmentActivity.OnFirstPageHYTJOnClickListener hytjListener) {
+
+    public static Fragment newInstance(int position, OnFirstPageZXDOnClickListener listener, MainFragmentActivity.OnFirstPageHYTJOnClickListener hytjListener) {
 		FirstPageFragment f = new FirstPageFragment();
 		Bundle args = new Bundle();
 		args.putInt("num", position);
@@ -194,39 +185,11 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener,O
 		}
 		requestBanner("正常", "");
 		hanlder.sendEmptyMessage(REQUEST_ARTICLELIST_WHAT);
+		requestInvestList("order_type","ASC");
 		return rootView;
 	}
 
 	private void findViews(View view, LayoutInflater inflater) {
-		xsbLayout = inflater.inflate(R.layout.first_page_subject_xsb, null);
-		viewsList.add(xsbLayout);
-
-		xsbImg = (ImageView)xsbLayout.findViewById(R.id.first_page_subject_xsb_logo);
-		xsbImg.setOnClickListener(this);
-		yyyImg = (ImageView)xsbLayout.findViewById(R.id.first_page_subject_yyy_logo);
-		yyyImg.setOnClickListener(this);
-		yzyImg = (ImageView)xsbLayout.findViewById(R.id.first_page_subject_yzy_logo);
-		yzyImg.setOnClickListener(this);
-		mGifView = (GifView) xsbLayout.findViewById(R.id.first_page_subject_xsb_gif);
-		mGifView.setGifImage(R.drawable.first_page_subject_gif);
-		mGifView.setShowDimension(mainActivity.getResources().getDimensionPixelSize(R.dimen.common_measure_63dp),
-				mainActivity.getResources().getDimensionPixelSize(R.dimen.common_measure_54dp));
-		mGifView.setOnClickListener(this);
-		bottomLayout = (LinearLayout) xsbLayout.findViewById(R.id.first_page_subject_bottom_layout);
-		bottomLayout.setOnClickListener(this);
-		tipsText = (TextView) xsbLayout
-				.findViewById(R.id.first_page_subject_xsb_text1);
-		SpannableStringBuilder builder = new SpannableStringBuilder(tipsText.getText().toString());
-		//ForegroundColorSpan 为文字前景色，BackgroundColorSpan为文字背景色
-		ForegroundColorSpan orangeSpan = new ForegroundColorSpan(getResources().getColor(R.color.orange_text));
-		builder.setSpan(orangeSpan, 8,12, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-		tipsText.setText(builder);
-
-//		hytjBtn = (Button)view.findViewById(R.id.first_page_fragment_hytj_btn);
-//		hytjBtn.setOnClickListener(this);
-//		hdzqBtn = (Button)view.findViewById(R.id.first_page_fragment_hdzq_btn);
-//		hdzqBtn.setOnClickListener(this);
-
 		defaultImg = (ImageView) view
 				.findViewById(R.id.first_page_fragment_default_img);
 		noticeLayout = (LinearLayout) view
@@ -237,13 +200,9 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener,O
 		noticeTime = (TextView) view
 				.findViewById(R.id.first_page_fragment_notice_time);
 
-//		subjectViewPager = (ViewPager) view
-//				.findViewById(R.id.first_page_fragment_viewpager);
-//		subjectViewPager.setAdapter(new SubjectPagerAdapter(viewsList));
-//		subjectViewPager.setCurrentItem(0);
-		mBanner = (Banner) view.findViewById(R.id.first_page_fragment_banner);
-		mBanner.setOnBannerListener(this);
-		mainActivity.setOnRequestBorrowListener(
+		mBanner = (ConvenientBanner) view.findViewById(R.id.convenientBanner);
+        initInvestListView(view);
+        mainActivity.setOnRequestBorrowListener(
 				new OnRequestBorrowListListener() {
 					@Override
 					public void back(BaseInfo baseInfo) {
@@ -262,12 +221,76 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener,O
 				if(enabled){
 					requestBanner("正常", "");
 					hanlder.sendEmptyMessage(REQUEST_ARTICLELIST_WHAT);
+					requestInvestList("order_type","ASC");
 				}
 			}
 		},null);
 	}
 
-	/**
+    private TextView tv_purpose1;
+    private TextView tv_purpose2;
+    private TextView tv_purpose3;
+
+    private TextView tv_lihua1;
+    private TextView tv_lihua2;
+    private TextView tv_lihua3;
+
+    private TextView tv_time1;
+    private TextView tv_time2;
+    private TextView tv_time3;
+
+    private TextView tv_actual_raising_money1;
+    private TextView tv_actual_raising_money2;
+    private TextView tv_actual_raising_money3;
+
+    private ProgressBar actual_raising_money_pb1;
+    private ProgressBar actual_raising_money_pb2;
+    private ProgressBar actual_raising_money_pb3;
+
+    private void initInvestListView(View view) {
+        mLl_invest_list1 = (LinearLayout) view.findViewById(R.id.ll_investment_list1);
+        mLl_invest_list2 = (LinearLayout) view.findViewById(R.id.ll_investment_list2);
+        mLl_invest_list3 = (LinearLayout) view.findViewById(R.id.ll_investment_list3);
+
+        tv_purpose1 = (TextView) view.findViewById(R.id.tv_purpose1);
+        tv_purpose2= (TextView) view.findViewById(R.id.tv_purpose2);
+        tv_purpose3 = (TextView) view.findViewById(R.id.tv_purpose3);
+        tv_lihua1 = (TextView) view.findViewById(R.id.tv_lihua1);
+        tv_lihua2 = (TextView) view.findViewById(R.id.tv_lihua2);
+        tv_lihua3 = (TextView) view.findViewById(R.id.tv_lihua3);
+        tv_time1 = (TextView) view.findViewById(R.id.tv_time1);
+        tv_time2 = (TextView) view.findViewById(R.id.tv_time2);
+        tv_time3 = (TextView) view.findViewById(R.id.tv_time3);
+        tv_actual_raising_money1 = (TextView) view.findViewById(R.id.tv_actual_raising_money1);
+        tv_actual_raising_money2 = (TextView) view.findViewById(R.id.tv_actual_raising_money2);
+        tv_actual_raising_money3 = (TextView) view.findViewById(R.id.tv_actual_raising_money3);
+        actual_raising_money_pb1 = (ProgressBar) view.findViewById(R.id.actual_raising_money_pb1);
+        actual_raising_money_pb2 = (ProgressBar) view.findViewById(R.id.actual_raising_money_pb3);
+        actual_raising_money_pb3 = (ProgressBar) view.findViewById(R.id.actual_raising_money_pb3);
+
+        mLl_invest_list1.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+			}
+		});
+
+		mLl_invest_list2.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+			}
+		});
+
+		mLl_invest_list3.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+
+			}
+		});
+    }
+
+    /**
 	 * 初始化公告栏
 	 *
 	 * @param
@@ -284,104 +307,121 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener,O
 	private void initBanner(List<BannerInfo> bannerList){
 		if(bannerList == null || bannerList.size() <= 0)
 			return;
-		List<String> images = new ArrayList<String>();
-		List<String> titles = new ArrayList<String>();
-		for(BannerInfo info : bannerList){
-			images.add(info.getPic_url());
-			titles.add(info.getId());
-		}
-		//设置banner样式
-		mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
-		//设置图片加载器
-		mBanner.setImageLoader(new GlideImageLoader());
-		//设置图片集合
-		mBanner.setImages(images);
-		//设置banner动画效果
-		mBanner.setBannerAnimation(Transformer.Accordion);
-		//设置自动轮播，默认为true
-		mBanner.isAutoPlay(true);
-		//设置轮播时间
-		mBanner.setDelayTime(2500);
-		//设置指示器位置（当banner模式中有指示器时）
-		mBanner.setIndicatorGravity(BannerConfig.CENTER);
-		//banner设置方法全部调用完毕时最后调用
-		mBanner.start();
+        mBanner.setPages(new CBViewHolderCreator<LocalImageHolderView>() {
+            @Override
+            public LocalImageHolderView createHolder() {
+                return new LocalImageHolderView();
+            }
+        }, bannerList)
+                //设置两个点图片作为翻页指示器，不设置则没有指示器，可以根据自己需求自行配合自己的指示器,不需要圆点指示器可用不设
+                .setPageIndicator(new int[]{R.drawable.bb_banner_point, R.drawable.bb_banner_point_sel})
+                //设置指示器的方向
+                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT)
+//                .setOnPageChangeListener(FirstpageFragment.this)//监听翻页事件
+                .setOnItemClickListener(FirstPageFragment.this);
+        //设置翻页的效果，不需要翻页效果可用不设
+        //.setPageTransformer(Transformer.DefaultTransformer);    集成特效之后会有白屏现象，新版已经分离，如果要集成特效的例子可以看Demo的点击响应。
+        //        convenientBanner.setManualPageable(false);//设置不能手动影响
+//        if (bannerListData.size() > 0) {
+//            mTextView.setText(bannerListData.get(0).title);
+//        }
 	}
 
-	@Override
-	public void OnBannerClick(int position) {
-		if(bannerList == null || bannerList.size() <= 0)
-			return;
-		BannerInfo info = bannerList.get(position);
-		Intent intent = null;
-		if ("文章".equals(info.getType())) {
-			if("".equals(info.getArticle_id()) || "0".equals(info.getArticle_id())){
+    public class LocalImageHolderView implements Holder<BannerInfo> {
+        private ImageView imageView;
 
-			}else{
-				intent = new Intent(mainActivity,
-						BannerDetailsActivity.class);
-				intent.putExtra("BannerInfo", info);
-				startActivity(intent);
-			}
-		} else if ("专题页".equals(info.getType())) {
-			intent = new Intent(mainActivity, BannerTopicActivity.class);
-			intent.putExtra("BannerInfo", info);
-			if (info.getArticle_id() != null && !"".equals(info.getArticle_id())) {
-				startActivity(intent);
-			}
-		}else if("窗口页面".equals(info.getType())){
-			if(ActivityCode.YYY_DETAILS_ACTIVITY.equals(info.getArticle_id())){
-				//元月盈详情页面
-				intent = new Intent(getActivity(),BorrowDetailYYYActivity.class);
-				startActivity(intent);
-			}else if(ActivityCode.XSB_DETAILS_ACTIVITY.equals(info.getArticle_id())){
-				//新手标详情页面
-				intent = new Intent(getActivity(),BorrowDetailXSBActivity.class);
-				startActivity(intent);
-			}else if(ActivityCode.DQLC_LIST_ACTIVITY.equals(info.getArticle_id())){
-				//元政盈列表页面
-				intent = new Intent(getActivity(),BorrowListZXDActivity.class);
-				startActivity(intent);
-			}else if(ActivityCode.VIP_LIST_ACTIVITY.equals(info.getArticle_id())){
-				//VIP产品列表页面
-				intent = new Intent(getActivity(),BorrowListVIPActivity.class);
-				startActivity(intent);
-			}else if(ActivityCode.SRZX_APPOINT_ACTIVITY.equals(info.getArticle_id())){
-				//私人尊享预约页面
-				intent = new Intent(getActivity(),SRZXAppointActivity.class);
-				startActivity(intent);
-			}else if(ActivityCode.FLJH_ACTIVITY.equals(info.getArticle_id())){
-				//会员福利计划
-				intent = new Intent(getActivity(),PrizeRegionTempActivity.class);
-				startActivity(intent);
-			}else if(ActivityCode.LXFX_ACTIVITY.equals(info.getArticle_id())){
-				//乐享返现 开年红
-				intent = new Intent(getActivity(),LXFXTempActivity.class);
-				startActivity(intent);
-			}else if(ActivityCode.SIGN_ACTIVITY.equals(info.getArticle_id())){
-				intent = new Intent(getActivity(),SignTopicTempActivity.class);
-				startActivity(intent);
-			}else if(ActivityCode.FLJH_ACTIVITY_02.equals(info.getArticle_id())){
-				intent = new Intent(getActivity(),PrizeRegion2TempActivity.class);
-				startActivity(intent);
-			}else if(ActivityCode.YQHY_ACTIVITY.equals(info.getArticle_id())){
-				intent = new Intent(getActivity(),YQHYTempActivity.class);
-				startActivity(intent);
-			}else if(ActivityCode.QXJ5_ACTIVITY.equals(info.getArticle_id())){
-				intent = new Intent(getActivity(),LXJ5TempActivity.class);
-				startActivity(intent);
-			}
-		}
-	}
+        @Override
+        public View createView(Context context) {
+            imageView = new ImageView(mContext);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            return imageView;
+        }
+
+        @Override
+        public void UpdateUI(Context context, int position, BannerInfo data) {
+            Glide.with(mContext).load(data.getPic_url()).into(imageView);
+        }
+    }
+
+    /**
+     * banner点击事件
+     *
+     * @param position
+     */
+    @Override
+    public void onItemClick(int position) {
+        if(bannerList == null || bannerList.size() <= 0)
+            return;
+        BannerInfo info = bannerList.get(position);
+        Intent intent = null;
+        if ("文章".equals(info.getType())) {
+            if("".equals(info.getArticle_id()) || "0".equals(info.getArticle_id())){
+
+            }else{
+                intent = new Intent(mainActivity,
+                        BannerDetailsActivity.class);
+                intent.putExtra("BannerInfo", info);
+                startActivity(intent);
+            }
+        } else if ("专题页".equals(info.getType())) {
+            intent = new Intent(mainActivity, BannerTopicActivity.class);
+            intent.putExtra("BannerInfo", info);
+            if (info.getArticle_id() != null && !"".equals(info.getArticle_id())) {
+                startActivity(intent);
+            }
+        }else if("窗口页面".equals(info.getType())){
+            if(ActivityCode.YYY_DETAILS_ACTIVITY.equals(info.getArticle_id())){
+                //元月盈详情页面
+                intent = new Intent(getActivity(),BorrowDetailYYYActivity.class);
+                startActivity(intent);
+            }else if(ActivityCode.XSB_DETAILS_ACTIVITY.equals(info.getArticle_id())){
+                //新手标详情页面
+                intent = new Intent(getActivity(),BorrowDetailXSBActivity.class);
+                startActivity(intent);
+            }else if(ActivityCode.DQLC_LIST_ACTIVITY.equals(info.getArticle_id())){
+                //元政盈列表页面
+                intent = new Intent(getActivity(),BorrowListZXDActivity.class);
+                startActivity(intent);
+            }else if(ActivityCode.VIP_LIST_ACTIVITY.equals(info.getArticle_id())){
+                //VIP产品列表页面
+                intent = new Intent(getActivity(),BorrowListVIPActivity.class);
+                startActivity(intent);
+            }else if(ActivityCode.SRZX_APPOINT_ACTIVITY.equals(info.getArticle_id())){
+                //私人尊享预约页面
+                intent = new Intent(getActivity(),SRZXAppointActivity.class);
+                startActivity(intent);
+            }else if(ActivityCode.FLJH_ACTIVITY.equals(info.getArticle_id())){
+                //会员福利计划
+                intent = new Intent(getActivity(),PrizeRegionTempActivity.class);
+                startActivity(intent);
+            }else if(ActivityCode.LXFX_ACTIVITY.equals(info.getArticle_id())){
+                //乐享返现 开年红
+                intent = new Intent(getActivity(),LXFXTempActivity.class);
+                startActivity(intent);
+            }else if(ActivityCode.SIGN_ACTIVITY.equals(info.getArticle_id())){
+                intent = new Intent(getActivity(),SignTopicTempActivity.class);
+                startActivity(intent);
+            }else if(ActivityCode.FLJH_ACTIVITY_02.equals(info.getArticle_id())){
+                intent = new Intent(getActivity(),PrizeRegion2TempActivity.class);
+                startActivity(intent);
+            }else if(ActivityCode.YQHY_ACTIVITY.equals(info.getArticle_id())){
+                intent = new Intent(getActivity(),YQHYTempActivity.class);
+                startActivity(intent);
+            }else if(ActivityCode.QXJ5_ACTIVITY.equals(info.getArticle_id())){
+                intent = new Intent(getActivity(),LXJ5TempActivity.class);
+                startActivity(intent);
+            }
+        }
+    }
 
 	private void checkNov2017Active(String sysTime){
 		int flag = SettingsManager.checkActiveStatusBySysTime(sysTime,SettingsManager.activeNov2017_StartTime,SettingsManager.activeNov2017_EndTime);
-		if(flag == 0){
-			//活动进行中
-			mGifView.setVisibility(View.VISIBLE);
-		}else{
-			mGifView.setVisibility(View.GONE);
-		}
+//		if(flag == 0){
+//			//活动进行中
+//			mGifView.setVisibility(View.VISIBLE);
+//		}else{
+//			mGifView.setVisibility(View.GONE);
+//		}
 	}
 
 	@Override
@@ -392,32 +432,24 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener,O
 	}
 
 	@Override
-	public void onStart() {
-		super.onStart();
-		//开始轮播
-		if(mBanner != null)
-			mBanner.startAutoPlay();
-	}
-
-	@Override
-	public void onStop() {
-		super.onStop();
-		//结束轮播
-		if(mBanner != null)
-			mBanner.stopAutoPlay();
-	}
-
-	@Override
 	public void onResume() {
 		super.onResume();
 		UMengStatistics.statisticsOnPageStart(className);
 		YLFLogger.d("FirstPageFragment -- onResume() ---");
-	}
+        //开始自动翻页
+        if (mBanner != null) {
+            mBanner.startTurning(3000);
+        }
+    }
 
 	@Override
 	public void onPause() {
 		super.onPause();
 		UMengStatistics.statisticsOnPageEnd(className);
+        //停止翻页
+        if (mBanner != null) {
+            mBanner.stopTurning();
+        }
 	}
 
 	@Override
@@ -434,39 +466,6 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener,O
 						ArticleListActivity.class);
 				startActivity(intentArt);
 				break;
-			case R.id.first_page_subject_xsb_logo:
-				//新手标
-				Intent intentXSB = new Intent(mainActivity,
-						BorrowDetailXSBActivity.class);
-				intentXSB.putExtra("PRODUCT_INFO", xsbInfo);
-				startActivity(intentXSB);
-				break;
-			case R.id.first_page_subject_yyy_logo:
-				//元月盈
-				Intent intentYYY = new Intent(mainActivity,
-						BorrowDetailYYYActivity.class);
-				startActivity(intentYYY);
-				break;
-			case R.id.first_page_subject_yzy_logo:
-			case R.id.first_page_subject_xsb_gif:
-				//元政盈
-				Intent intentYZY = new Intent(mainActivity,
-						BorrowListZXDActivity.class);
-				startActivity(intentYZY);
-				break;
-			case R.id.first_page_subject_bottom_layout:
-				if(firstPageZXDListener != null)
-					firstPageZXDListener.back();
-				break;
-//			case R.id.first_page_fragment_hytj_btn:
-//				//壕友推荐
-//				shared();
-//				break;
-//			case R.id.first_page_fragment_hdzq_btn:
-//				//活动专区
-//				Intent intentHDZQ = new Intent(mainActivity, ActivitysRegionActivity.class);
-//				mainActivity.startActivity(intentHDZQ);
-//				break;
 			default:
 				break;
 		}
@@ -530,38 +529,6 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener,O
 		super.onDestroyView();
 	}
 
-	/**
-	 * Viewpager的适配器
-	 * @author Mr.liu
-	 */
-	class SubjectPagerAdapter extends PagerAdapter {
-		private List<View> mListViews;
-
-		public SubjectPagerAdapter(List<View> mListViews) {
-			this.mListViews = mListViews;// 构造方法，参数是我们的页卡，这样比较方便。
-		}
-
-		@Override
-		public void destroyItem(ViewGroup container, int position, Object object) {
-			container.removeView(mListViews.get(position));// 删除页卡
-		}
-
-		@Override
-		public Object instantiateItem(ViewGroup container, int position) { // 这个方法用来实例化页卡
-			container.addView(mListViews.get(position), 0);// 添加页卡
-			return mListViews.get(position);
-		}
-
-		@Override
-		public int getCount() {
-			return mListViews.size();// 返回页卡的数量
-		}
-
-		@Override
-		public boolean isViewFromObject(View arg0, Object arg1) {
-			return arg0 == arg1;// 官方提示这样写
-		}
-	}
 
 	/**
 	 * 请求banner数据
@@ -632,6 +599,58 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener,O
 	}
 
 	/**
+	 * 投资列表 ---- 取前三条最新的数据
+	 *
+	 * @param order_by
+	 * @param sort
+	 */
+	private void requestInvestList(String order_by, String sort) {
+		AsyncInvestmentList investTask = new AsyncInvestmentList(mainActivity,
+				String.valueOf(0), String.valueOf(3), order_by, sort,
+				new OnCommonInter() {
+					@Override
+					public void back(BaseInfo baseInfo) {
+						if (baseInfo != null) {
+							int resultCode = SettingsManager
+									.getResultCode(baseInfo);
+							if (resultCode == 0) {
+								initInvestList(baseInfo.getInvestmentListInfo());
+							}
+						}
+					}
+				});
+		investTask.executeAsyncTask(SettingsManager.FULL_TASK_EXECUTOR);
+
+	}
+
+	private void initInvestList(InvestmentListInfo investmentListInfo) {
+		//初始化首页中间投资列表
+		if(investmentListInfo.getInvestListData().size() == 3) {
+            mLl_invest_list1.setVisibility(View.VISIBLE);
+            mLl_invest_list2.setVisibility(View.VISIBLE);
+            mLl_invest_list3.setVisibility(View.VISIBLE);
+            initInvest1(investmentListInfo);
+            initInvest2(investmentListInfo);
+            initInvest3(investmentListInfo);
+		}else if(investmentListInfo.getInvestListData().size() == 2) {
+            mLl_invest_list1.setVisibility(View.VISIBLE);
+            mLl_invest_list2.setVisibility(View.VISIBLE);
+            mLl_invest_list3.setVisibility(View.GONE);
+			initInvest1(investmentListInfo);
+			initInvest2(investmentListInfo);
+		}else if(investmentListInfo.getInvestListData().size() == 1) {
+            mLl_invest_list1.setVisibility(View.VISIBLE);
+            mLl_invest_list2.setVisibility(View.GONE);
+            mLl_invest_list3.setVisibility(View.GONE);
+			initInvest1(investmentListInfo);
+		}else if(investmentListInfo.getInvestListData().size() == 0) {
+            mLl_invest_list1.setVisibility(View.GONE);
+            mLl_invest_list2.setVisibility(View.GONE);
+            mLl_invest_list3.setVisibility(View.GONE);
+		}
+	}
+
+	/**
 	 * 公告列表 ---- 取第一条最新的数据
 	 *
 	 * @param status
@@ -657,4 +676,81 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener,O
 				});
 		articleTask.executeAsyncTask(SettingsManager.FULL_TASK_EXECUTOR);
 	}
+
+
+	private void initInvest1(InvestmentListInfo investmentListInfo) {
+		if(investmentListInfo.getInvestListData().get(0).getBorrow_interest() != null ) {
+			tv_lihua1.setText(investmentListInfo.getInvestListData().get(0).getBorrow_interest());
+		}
+		if(investmentListInfo.getInvestListData().get(0).getUse_purpose() != null) {
+			tv_purpose1.setText(investmentListInfo.getInvestListData().get(0).getUse_purpose());
+		}
+		if(investmentListInfo.getInvestListData().get(0).getBorrow_period() != null) {
+			tv_time1.setText(investmentListInfo.getInvestListData().get(0).getBorrow_period());
+		}
+		int actual_loan_money = 0;
+		int actual_raising_money = 0;
+		if(investmentListInfo.getInvestListData().get(0).getActual_loan_money() != null) {
+			actual_loan_money = Integer.parseInt(investmentListInfo.getInvestListData().get(0).getActual_loan_money());
+		}
+		if(investmentListInfo.getInvestListData().get(0).getActual_raising_money() != null) {
+			actual_raising_money = Integer.parseInt(investmentListInfo.getInvestListData().get(0).getActual_raising_money());
+		}
+		DecimalFormat df = new DecimalFormat("0.0");
+		String scale = df.format((float)(actual_raising_money*100)/actual_loan_money);
+		actual_raising_money_pb1.setMax(actual_loan_money);
+		actual_raising_money_pb1.setProgress(actual_raising_money);
+		tv_actual_raising_money1.setText(scale +"%");
+	}
+
+	private void initInvest2(InvestmentListInfo investmentListInfo) {
+		if(investmentListInfo.getInvestListData().get(1).getBorrow_interest() != null ) {
+			tv_lihua2.setText(investmentListInfo.getInvestListData().get(1).getBorrow_interest());
+		}
+		if(investmentListInfo.getInvestListData().get(1).getUse_purpose() != null) {
+			tv_purpose2.setText(investmentListInfo.getInvestListData().get(1).getUse_purpose());
+		}
+		if(investmentListInfo.getInvestListData().get(1).getBorrow_period() != null) {
+			tv_time2.setText(investmentListInfo.getInvestListData().get(1).getBorrow_period());
+		}
+		int actual_loan_money = 0;
+		int actual_raising_money = 0;
+		if(investmentListInfo.getInvestListData().get(1).getActual_loan_money() != null) {
+			actual_loan_money = Integer.parseInt(investmentListInfo.getInvestListData().get(1).getActual_loan_money());
+		}
+		if(investmentListInfo.getInvestListData().get(1).getActual_raising_money() != null) {
+			actual_raising_money = Integer.parseInt(investmentListInfo.getInvestListData().get(1).getActual_raising_money());
+		}
+		DecimalFormat df = new DecimalFormat("0.0");
+		String scale = df.format((float)(actual_raising_money*100)/actual_loan_money);
+		actual_raising_money_pb2.setMax(actual_loan_money);
+		actual_raising_money_pb2.setProgress(actual_raising_money);
+		tv_actual_raising_money2.setText(scale +"%");
+	}
+
+	private void initInvest3(InvestmentListInfo investmentListInfo) {
+		if(investmentListInfo.getInvestListData().get(2).getBorrow_interest() != null ) {
+			tv_lihua3.setText(investmentListInfo.getInvestListData().get(2).getBorrow_interest());
+		}
+		if(investmentListInfo.getInvestListData().get(2).getUse_purpose() != null) {
+			tv_purpose3.setText(investmentListInfo.getInvestListData().get(2).getUse_purpose());
+		}
+		if(investmentListInfo.getInvestListData().get(2).getBorrow_period() != null) {
+			tv_time3.setText(investmentListInfo.getInvestListData().get(2).getBorrow_period());
+		}
+		int actual_loan_money = 0;
+		int actual_raising_money = 0;
+		if(investmentListInfo.getInvestListData().get(2).getActual_loan_money() != null) {
+			actual_loan_money = Integer.parseInt(investmentListInfo.getInvestListData().get(2).getActual_loan_money());
+		}
+		if(investmentListInfo.getInvestListData().get(2).getActual_raising_money() != null) {
+			actual_raising_money = Integer.parseInt(investmentListInfo.getInvestListData().get(2).getActual_raising_money());
+		}
+		DecimalFormat df = new DecimalFormat("0.0");
+		String scale = df.format((float)(actual_raising_money*100)/actual_loan_money);
+		actual_raising_money_pb3.setMax(actual_loan_money);
+		actual_raising_money_pb3.setProgress(actual_raising_money);
+		tv_actual_raising_money3.setText(scale +"%");
+	}
+
 }
