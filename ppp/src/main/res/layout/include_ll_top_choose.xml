@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/common_measure_56dp"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/rel_chooser_left"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_chooser_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="综合排序"
+            android:textColor="@color/common_topbar_bg_color"
+            android:textSize="@dimen/common_measure_17dp" />
+
+        <View
+            android:id="@+id/view_bottom1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_measure_3dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/common_topbar_bg_color" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel_chooser_center"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/child_background">
+
+        <TextView
+            android:id="@+id/tv_chooser_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:drawablePadding="@dimen/common_measure_6dp"
+            android:drawableRight="@drawable/icon_sort_comment"
+            android:text="按利率"
+            android:textColor="@color/gray4"
+            android:textSize="@dimen/common_measure_17dp" />
+
+        <View
+            android:id="@+id/view_bottom2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_measure_3dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/common_topbar_bg_color"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel_chooser_right"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/child_background">
+
+        <TextView
+            android:id="@+id/tv_chooser_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:drawablePadding="@dimen/common_measure_6dp"
+            android:drawableRight="@drawable/icon_sort_comment"
+            android:text="按期限"
+            android:textColor="@color/gray4"
+            android:textSize="@dimen/common_measure_17dp" />
+
+        <View
+            android:id="@+id/view_bottom3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_measure_3dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/common_topbar_bg_color"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</LinearLayout>

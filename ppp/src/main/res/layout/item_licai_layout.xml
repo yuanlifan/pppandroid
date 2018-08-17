@@ -7,10 +7,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_measure_42dp"
+        android:layout_marginTop="@dimen/common_measure_2dp"
         android:background="@color/white"
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/tv_purpose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -25,25 +27,25 @@
             android:layout_weight="1" />
 
         <ProgressBar
-            android:id="@+id/borrow_details_yyy_activity_pb"
+            android:id="@+id/actual_raising_money_pb"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="@dimen/common_measure_158dp"
+            android:layout_width="@dimen/common_measure_160dp"
             android:layout_height="@dimen/common_measure_8dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/common_measure_18dp"
+            android:layout_marginLeft="@dimen/common_measure_19dp"
             android:layout_marginRight="@dimen/common_measure_18dp"
             android:max="10000"
             android:maxHeight="@dimen/common_measure_10dp"
             android:minHeight="@dimen/common_measure_8dp"
-            android:progress="7000"
             android:progressDrawable="@drawable/style_hor_progressbar_blue" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_actual_raising_money"
+            android:layout_width="@dimen/common_measure_46dp"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/common_measure_16dp"
             android:gravity="center_vertical"
-            android:text="60%"
+            android:text="60.1%"
             android:textColor="@color/gray5"
             android:textSize="@dimen/common_measure_15dp" />
 
@@ -56,68 +58,78 @@
         android:paddingLeft="@dimen/common_measure_16dp"
         android:paddingRight="@dimen/common_measure_16dp">
 
-        <TextView
-            android:id="@+id/tv_lihua1"
+        <LinearLayout
+            android:id="@+id/ll_loan_left1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="9.0"
-            android:textColor="#ff6e08"
-            android:textSize="@dimen/common_measure_26dp"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_lihua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9.0"
+                android:textColor="#ff6e08"
+                android:textSize="@dimen/common_measure_26dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_measure_3dp"
+                android:text="%"
+                android:textColor="#ff6e08"
+                android:textSize="@dimen/common_measure_16dp" />
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/tv_lihua1"
-            android:layout_marginBottom="@dimen/common_measure_3dp"
-            android:layout_marginLeft="@dimen/common_measure_3dp"
-            android:layout_toRightOf="@+id/tv_lihua1"
-            android:text="%"
-            android:textColor="#ff6e08"
-            android:textSize="@dimen/common_measure_16dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_lihua1"
+            android:layout_below="@+id/ll_loan_left1"
             android:layout_marginTop="@dimen/common_measure_3dp"
             android:text="预计年利率"
             android:textColor="@color/gray2"
             android:textSize="@dimen/common_measure_16dp" />
 
-        <TextView
-            android:id="@+id/tv_times"
+        <LinearLayout
+            android:id="@+id/ll_loan_center1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/common_measure_160dp"
-            android:text="12"
-            android:textColor="@color/gray5"
-            android:textSize="@dimen/common_measure_26dp"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12"
+                android:textColor="@color/gray5"
+                android:textSize="@dimen/common_measure_26dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common_measure_3dp"
+                android:text="个月"
+                android:textColor="@color/gray5"
+                android:textSize="@dimen/common_measure_16dp" />
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/tv_times"
-            android:layout_marginBottom="@dimen/common_measure_3dp"
-            android:layout_marginLeft="@dimen/common_measure_3dp"
-            android:layout_toEndOf="@+id/tv_times"
-            android:text="个月"
-            android:textColor="@color/gray5"
-            android:textSize="@dimen/common_measure_16dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/tv_times"
-            android:layout_below="@+id/tv_times"
+            android:layout_alignLeft="@+id/ll_loan_center1"
+            android:layout_below="@+id/ll_loan_center1"
             android:layout_marginTop="@dimen/common_measure_3dp"
             android:text="期限"
             android:textColor="@color/gray2"
             android:textSize="@dimen/common_measure_16dp" />
 
         <Button
-            android:id="@+id/borrow_detail_yyy_activity_bidBtn"
+            android:id="@+id/btn_borrow_money_entrance"
             android:layout_width="@dimen/common_measure_130dp"
             android:layout_height="@dimen/common_measure_36dp"
             android:layout_alignParentRight="true"
@@ -130,10 +142,9 @@
     </RelativeLayout>
 
     <View
-        android:background="@color/commonBackground"
-        android:layout_marginLeft="@dimen/common_measure_16dp"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/common_measure_1dp"/>
-
+        android:layout_height="@dimen/common_measure_1dp"
+        android:layout_marginLeft="@dimen/common_measure_16dp"
+        android:background="@color/commonBackground" />
 
 </LinearLayout>

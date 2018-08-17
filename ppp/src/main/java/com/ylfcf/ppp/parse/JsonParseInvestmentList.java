@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Banner 
+ * 商汇易列表数据
  * @author Administrator
  *
  */

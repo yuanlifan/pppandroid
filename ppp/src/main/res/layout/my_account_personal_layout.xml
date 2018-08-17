@@ -478,6 +478,7 @@
             android:background="@color/edittext_line_color" />
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/my_account_personal_jlmx_layout"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/common_measure_75dp"

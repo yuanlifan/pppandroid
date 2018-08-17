@@ -29,6 +29,7 @@
 	<color name="gray">#848284</color>
 	<color name="gray1">#A0A2A0</color>
 	<color name="gray_trans">#44000000</color>
+    <color name="gray0">#999999</color>
 	<color name="gray2">#888888</color>
 	<color name="gray3">#868686</color>
 	<color name="gray4">#666666</color>

@@ -102,8 +102,12 @@ public class BidSuccessActivity extends BaseActivity implements OnClickListener{
 			finish();
 			break;
 		case R.id.bid_success_activity_cat_record:
-			Intent intent = new Intent(BidSuccessActivity.this, UserInvestRecordActivity.class);
-			intent.putExtra("from_where", fromWhere);
+//			Intent intent = new Intent(BidSuccessActivity.this, UserInvestRecordActivity.class);
+//			intent.putExtra("from_where", fromWhere);
+//			startActivity(intent);
+
+			Intent intent = new Intent(BidSuccessActivity.this, InvestmentRecordActivity.class);
+//			intent.putExtra("from_where", fromWhere);
 			startActivity(intent);
 			finish();
 			break;

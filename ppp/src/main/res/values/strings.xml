@@ -494,9 +494,9 @@
     <string name="yyy_investrecord_top_prompt">提示：\n1.本期年化利率和本期投资总收益，均包含活动或道具带来的加息（如有）。\n2.已赎回的元月盈，其本期年化利率指赎回前最后一个锁定期的标的利率，含活动或道具带来的加息（如有）。</string>
     <string name="my_friends_list_activity_toptips">1、统计有效期内的好友数量。\n2、仅显示直接好友的详细信息。</string>
 
-    <!--账户中心-->
+    <!--账户中心 todo 2+投资使用的奖励的本金及收益-->
     <string name="account_center_tips_string1">账户余额指投资人账户内可自由支配的资金</string>
-    <string name="account_center_tips_string2">待收金额指投资项目待收回的本金及收益+投资使用的奖励的本金及收益</string>
+    <string name="account_center_tips_string2">待收金额指投资项目待收回的本金及收益</string>
     <string name="account_center_tips_string3">冻结金额指投资人已完成支付但标的未完成募集的本金和尚在提现审批中的资金</string>
     <string name="account_center_hkrl_tips">提示：\n1、回款日历包括投资项目待收回的本金、收益及投资使用的奖励的本金和收益，以及“我的奖励”。\n2、因“薪盈计划”产品的特殊性，仅对“薪盈计划”的还款时间做日期提示，“还款总额”不包括“薪盈计划”的回款金额。</string>
 

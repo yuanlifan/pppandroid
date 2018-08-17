@@ -51,6 +51,7 @@ import com.ylfcf.ppp.ui.BorrowDetailXSBActivity;
 import com.ylfcf.ppp.ui.BorrowDetailYYYActivity;
 import com.ylfcf.ppp.ui.BorrowListVIPActivity;
 import com.ylfcf.ppp.ui.BorrowListZXDActivity;
+import com.ylfcf.ppp.ui.InvestmentActivity;
 import com.ylfcf.ppp.ui.InvitateActivity;
 import com.ylfcf.ppp.ui.LXFXTempActivity;
 import com.ylfcf.ppp.ui.LXJ5TempActivity;
@@ -145,8 +146,9 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener, 
 	 */
 	private static OnFirstPageZXDOnClickListener firstPageZXDListener;
 	private static MainFragmentActivity.OnFirstPageHYTJOnClickListener hytjOnClickListener;
+	private InvestmentListInfo mInvestmentListInfo;
 
-    public static Fragment newInstance(int position, OnFirstPageZXDOnClickListener listener, MainFragmentActivity.OnFirstPageHYTJOnClickListener hytjListener) {
+	public static Fragment newInstance(int position, OnFirstPageZXDOnClickListener listener, MainFragmentActivity.OnFirstPageHYTJOnClickListener hytjListener) {
 		FirstPageFragment f = new FirstPageFragment();
 		Bundle args = new Bundle();
 		args.putInt("num", position);
@@ -185,7 +187,7 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener, 
 		}
 		requestBanner("Õý³£", "");
 		hanlder.sendEmptyMessage(REQUEST_ARTICLELIST_WHAT);
-		requestInvestList("order_type","ASC");
+		requestInvestList("","ASC");
 		return rootView;
 	}
 
@@ -267,27 +269,18 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener, 
         actual_raising_money_pb1 = (ProgressBar) view.findViewById(R.id.actual_raising_money_pb1);
         actual_raising_money_pb2 = (ProgressBar) view.findViewById(R.id.actual_raising_money_pb3);
         actual_raising_money_pb3 = (ProgressBar) view.findViewById(R.id.actual_raising_money_pb3);
+        Button btn_borrow_money_entrance1 = (Button) view.findViewById(R.id.btn_borrow_money_entrance1);
+        Button btn_borrow_money_entrance2 = (Button) view.findViewById(R.id.btn_borrow_money_entrance2);
+        Button btn_borrow_money_entrance3 = (Button) view.findViewById(R.id.btn_borrow_money_entrance3);
+        TextView tv_left_more = (TextView) view.findViewById(R.id.tv_left_more);
 
-        mLl_invest_list1.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-
-			}
-		});
-
-		mLl_invest_list2.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-
-			}
-		});
-
-		mLl_invest_list3.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-
-			}
-		});
+        btn_borrow_money_entrance1.setOnClickListener(this);
+        btn_borrow_money_entrance2.setOnClickListener(this);
+        btn_borrow_money_entrance3.setOnClickListener(this);
+        tv_left_more.setOnClickListener(this);
+        mLl_invest_list1.setOnClickListener(this);
+		mLl_invest_list2.setOnClickListener(this);
+		mLl_invest_list3.setOnClickListener(this);
     }
 
     /**
@@ -466,10 +459,33 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener, 
 						ArticleListActivity.class);
 				startActivity(intentArt);
 				break;
+            case R.id.ll_investment_list1:
+            case R.id.btn_borrow_money_entrance1:
+                enterInvestmentDetail(0);
+                break;
+            case R.id.ll_investment_list2:
+            case R.id.btn_borrow_money_entrance2:
+                enterInvestmentDetail(1);
+                break;
+            case R.id.ll_investment_list3:
+            case R.id.btn_borrow_money_entrance3:
+                enterInvestmentDetail(2);
+                break;
+            case R.id.tv_left_more:
+                mainActivity.setViewPagerCurPostion(1);
+                break;
 			default:
 				break;
 		}
 	}
+
+	private void enterInvestmentDetail(int position) {
+        if(mInvestmentListInfo != null &&mInvestmentListInfo.getInvestListData() != null && mInvestmentListInfo.getInvestListData().size() > 0) {
+            Intent intent = new Intent(mContext, InvestmentActivity.class);
+            intent.putExtra("id", mInvestmentListInfo.getInvestListData().get(position).getId());
+            startActivity(intent);
+        }
+    }
 
 	private void shared(){
 		String userId = SettingsManager.getUserId(mainActivity.getApplicationContext());
@@ -614,8 +630,13 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener, 
 							int resultCode = SettingsManager
 									.getResultCode(baseInfo);
 							if (resultCode == 0) {
+								mInvestmentListInfo = baseInfo.getInvestmentListInfo();
 								initInvestList(baseInfo.getInvestmentListInfo());
 							}
+						}else {
+							mLl_invest_list1.setVisibility(View.GONE);
+							mLl_invest_list2.setVisibility(View.GONE);
+							mLl_invest_list3.setVisibility(View.GONE);
 						}
 					}
 				});
@@ -698,6 +719,9 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener, 
 		}
 		DecimalFormat df = new DecimalFormat("0.0");
 		String scale = df.format((float)(actual_raising_money*100)/actual_loan_money);
+		if(scale.endsWith("0")) {
+			scale = scale.split("\\.")[0];
+		}
 		actual_raising_money_pb1.setMax(actual_loan_money);
 		actual_raising_money_pb1.setProgress(actual_raising_money);
 		tv_actual_raising_money1.setText(scale +"%");
@@ -723,6 +747,9 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener, 
 		}
 		DecimalFormat df = new DecimalFormat("0.0");
 		String scale = df.format((float)(actual_raising_money*100)/actual_loan_money);
+		if(scale.endsWith("0")) {
+			scale = scale.split("\\.")[0];
+		}
 		actual_raising_money_pb2.setMax(actual_loan_money);
 		actual_raising_money_pb2.setProgress(actual_raising_money);
 		tv_actual_raising_money2.setText(scale +"%");
@@ -748,6 +775,9 @@ public class FirstPageFragment extends BaseFragment implements OnClickListener, 
 		}
 		DecimalFormat df = new DecimalFormat("0.0");
 		String scale = df.format((float)(actual_raising_money*100)/actual_loan_money);
+		if(scale.endsWith("0")) {
+			scale = scale.split("\\.")[0];
+		}
 		actual_raising_money_pb3.setMax(actual_loan_money);
 		actual_raising_money_pb3.setProgress(actual_raising_money);
 		tv_actual_raising_money3.setText(scale +"%");

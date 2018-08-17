@@ -54,6 +54,7 @@ import com.ylfcf.ppp.ui.BannerTopicActivity;
 import com.ylfcf.ppp.ui.BindCardActivity;
 import com.ylfcf.ppp.ui.BorrowListYJYActivity;
 import com.ylfcf.ppp.ui.FundsDetailsActivity;
+import com.ylfcf.ppp.ui.InvestmentRecordActivity;
 import com.ylfcf.ppp.ui.InvitateActivity;
 import com.ylfcf.ppp.ui.LXFXTempActivity;
 import com.ylfcf.ppp.ui.MainFragmentActivity;
@@ -291,7 +292,9 @@ public class UserPersonalFragment extends BaseFragment implements View.OnClickLi
                 startActivity(intentFund);
                 break;
             case R.id.my_account_personal_tbjl_layout:
-                Intent intentUserRecord = new Intent(mainActivity,UserInvestRecordActivity.class);
+//                Intent intentUserRecord = new Intent(mainActivity,UserInvestRecordActivity.class);
+//                startActivity(intentUserRecord);
+                Intent intentUserRecord = new Intent(mainActivity,InvestmentRecordActivity.class);
                 startActivity(intentUserRecord);
                 break;
             case R.id.my_account_personal_yqyj_layout:
@@ -921,8 +924,9 @@ public class UserPersonalFragment extends BaseFragment implements View.OnClickLi
                     int resultCode = SettingsManager.getResultCode(baseInfo);
                     if(resultCode == 0){
                         //是理财师
-                        isLcs = true;
-                        yjyLayout.setVisibility(View.VISIBLE);
+                        isLcs = true;//todo
+//                        yjyLayout.setVisibility(View.VISIBLE);
+                        yjyLayout.setVisibility(View.GONE);
                     }else{
                         //非理财师
                         isLcs = false;

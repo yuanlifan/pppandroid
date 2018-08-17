@@ -9,84 +9,14 @@
         android:id="@+id/licai_fragment_toplayout"
         layout="@layout/common_topbar" />
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <!--<include layout="@layout/include_ll_top_choose"/>-->
+
+    <com.ylfcf.ppp.view.CustomTopChooseLayout
+        android:id="@+id/choose_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_measure_56dp">
 
-        <RelativeLayout
-            android:background="@color/white"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:text="综合排序"
-                android:textSize="@dimen/common_measure_17dp"
-                android:textColor="@color/common_topbar_bg_color"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <View
-                android:layout_alignParentBottom="true"
-                android:background="@color/common_topbar_bg_color"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/common_measure_3dp"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:background="@color/child_background"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:text="按利率"
-                android:textSize="@dimen/common_measure_17dp"
-                android:drawableRight="@drawable/icon_sort_comment"
-                android:drawablePadding="@dimen/common_measure_6dp"
-                android:textColor="@color/gray4"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <View
-                android:visibility="gone"
-                android:layout_alignParentBottom="true"
-                android:background="@color/common_topbar_bg_color"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/common_measure_3dp"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:background="@color/child_background"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:text="按期限"
-                android:textSize="@dimen/common_measure_17dp"
-                android:drawableRight="@drawable/icon_sort_comment"
-                android:drawablePadding="@dimen/common_measure_6dp"
-                android:textColor="@color/gray4"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <View
-                android:visibility="gone"
-                android:layout_alignParentBottom="true"
-                android:background="@color/common_topbar_bg_color"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/common_measure_2dp"/>
-
-        </RelativeLayout>
-
-    </LinearLayout>
+    </com.ylfcf.ppp.view.CustomTopChooseLayout>
 
     <View
         android:background="@color/common.emptybackground"

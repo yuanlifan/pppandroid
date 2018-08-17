@@ -88,11 +88,11 @@ public class MyFriendAdapter extends ArrayAdapter<FriendInfo> {
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        if(isLcs){
-            viewHolder.btnTableRow.setVisibility(View.VISIBLE);
-        }else{
-            viewHolder.btnTableRow.setVisibility(View.GONE);
-        }
+//        if(isLcs){
+//            viewHolder.btnTableRow.setVisibility(View.VISIBLE);
+//        }else{
+//            viewHolder.btnTableRow.setVisibility(View.GONE);
+//        }
         viewHolder.phoneTV.setText(info.getPhone());
         if(info.getReal_name() == null || "".equals(info.getReal_name())){
             viewHolder.nameTV.setText("һ һ");

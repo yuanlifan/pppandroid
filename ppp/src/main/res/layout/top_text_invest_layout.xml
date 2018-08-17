@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/ll_head_view"
+
+    android:background="@color/child_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_measure_1dp"
+        android:background="@color/edittext_line_color" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_measure_1dp"
+        android:layout_marginTop="@dimen/common_measure_10dp"
+        android:background="@color/edittext_line_color" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/common_measure_15dp"
+        android:text="担保措施"
+        android:textColor="@color/black"
+        android:textSize="@dimen/common_measure_19dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_measure_1dp"
+        android:background="@color/edittext_line_color" />
+
+    <TextView
+        android:id="@+id/tv_measures"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/common_measure_15dp"
+        android:lineSpacingExtra="@dimen/common_measure_5dp"
+        android:text="其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息"
+        android:textColor="@color/gray4"
+        android:textSize="@dimen/common_measure_17dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_measure_1dp"
+        android:background="@color/edittext_line_color" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_measure_1dp"
+        android:layout_marginTop="@dimen/common_measure_10dp"
+        android:background="@color/edittext_line_color" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/common_measure_15dp"
+        android:text="还款来源"
+        android:textColor="@color/black"
+        android:textSize="@dimen/common_measure_19dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_measure_1dp"
+        android:background="@color/edittext_line_color" />
+
+    <TextView
+        android:id="@+id/tv_repay_from"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/common_measure_15dp"
+        android:lineSpacingExtra="@dimen/common_measure_5dp"
+        android:text="其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息"
+        android:textColor="@color/gray4"
+        android:textSize="@dimen/common_measure_17dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_measure_1dp"
+        android:background="@color/edittext_line_color" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_measure_1dp"
+        android:layout_marginTop="@dimen/common_measure_10dp"
+        android:background="@color/edittext_line_color" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/common_measure_15dp"
+        android:text="公函文件"
+        android:textColor="@color/black"
+        android:textSize="@dimen/common_measure_19dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_measure_1dp"
+        android:background="@color/edittext_line_color" />
+
+</LinearLayout>

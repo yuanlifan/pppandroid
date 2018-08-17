@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/style_rect_fillet_filling_white_dialog"
+    android:orientation="vertical" >
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_measure_20dp"
+        android:layout_marginBottom="@dimen/common_measure_20dp"
+        android:gravity="center_horizontal"
+        android:text="会员投资提示"
+        android:textSize="@dimen/common_measure_24dp"
+        android:textColor="@color/black"/>
+    
+    <!-- 投资金额的布局 -->
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+        
+        <TextView 
+            android:id="@+id/invest_prompt_layout_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您确认投资"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/common_measure_20dp"/>
+        
+        <TextView 
+            android:id="@+id/invest_prompt_layout_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/common_topbar_bg_color"
+            android:textSize="@dimen/common_measure_20dp"/>
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="元吗？"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/common_measure_20dp"/>
+        
+    </LinearLayout>
+    
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_measure_1dp"
+        android:layout_marginTop="@dimen/common_measure_20dp"
+        android:background="@color/edittext_line_color"/>
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/common_measure_60dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+        <!-- android:background="@drawable/style_rect_fillet_filling_blue" -->
+        <Button 
+            android:id="@+id/invest_prompt_layout_surebtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="确认"
+            android:background="@null"
+            android:gravity="center"
+            android:textColor="@color/common_topbar_bg_color"
+            android:textSize="@dimen/common_measure_24dp"/>
+         
+        <View 
+            android:layout_width="@dimen/common_measure_1dp"
+            android:layout_height="match_parent"
+            android:background="@color/edittext_line_color"/>
+        
+        <Button 
+            android:id="@+id/invest_prompt_layout_cancelbtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="取消"
+            android:background="@null"
+            android:gravity="center"
+            android:textColor="@color/common_topbar_bg_color"
+            android:textSize="@dimen/common_measure_24dp"/>
+        
+    </LinearLayout>
+
+</LinearLayout>

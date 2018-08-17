@@ -1,6 +1,7 @@
 package com.ylfcf.ppp.util;
 
 import android.text.TextUtils;
+import android.widget.ScrollView;
 
 import java.io.UnsupportedEncodingException;
 
@@ -30,9 +31,9 @@ public class URLGenerator {
 //	private static final String API2_DOMAIN_URL = "http://api.dev.ylfcf.com";//
 
 	//测试环境
-//	private static final String API_DOMAIN_URL = "http://www.test.ylfcf.com";//API环境
-//	private static final String WAP_DOMAIN_URL = "http://wap.test.ylfcf.com";//WAP环境
-//	private static final String API2_DOMAIN_URL = "http://api.dev.ylfcf.com";//
+	private static final String API_DOMAIN_URL = "http://www.test.ylfcf.com";//API环境
+	private static final String WAP_DOMAIN_URL = "http://wap.test.ylfcf.com";//WAP环境
+	private static final String API2_DOMAIN_URL = "http://api.dev.ylfcf.com";//
 
 	//朱礼涛开发环境
 //	private static final String API_DOMAIN_URL = "http://www.ylf.com";//API环境
@@ -46,9 +47,10 @@ public class URLGenerator {
 
 	//杨永豪开发环境
 //	private static final String API_DOMAIN_URL = "http://ww.api.com";//API环境
-	private static final String API_DOMAIN_URL = "http://www.dev_web.com";//API环境
-	private static final String WAP_DOMAIN_URL = "http://www.ylf_chat.com";//WAP环境
-	private static final String API2_DOMAIN_URL = "http://api.dev.ylfcf.com";//w
+
+//	private static final String API_DOMAIN_URL = "http://www.dev_web.com";//API环境
+//	private static final String WAP_DOMAIN_URL = "http://www.ylf_chat.com";//WAP环境
+//	private static final String API2_DOMAIN_URL = "http://api.dev.ylfcf.com";//w
 
 //	private static final String API_DOMAIN_URL = "http://www.web";//API环境
 //	private static final String WAP_DOMAIN_URL = "http://www.ylf_chat.com";//WAP环境
@@ -171,7 +173,13 @@ public class URLGenerator {
 	private final String BANNERLIST_URL = "/article/article/selectPhoneBannerList";// banner
 	private final String ARTICLE_TYJLIST_BYSTATUS = "/active/experience/selectListByStatus";// 根据用户id和状态获取体验金列表
 
+
 	private final String INVESTMENT_LIST_URL = "/p2p/borrow_info/selectListForWeb";// 投资列表页面数据
+	private final String INVESTMENT_DETAIL_URL = "/p2p/borrow_info/selectOneBorrowInfo";// 投资详情页面数据
+	private final String LOAN_RECORD_URL = "/p2p/borrow_invest/selectBorrowInvestList";// 出借记录页面数据
+	private final String BORROW_INFO_SAFE_URL = "/p2p/borrow_info/safeGuarantee";// 出借记录页面数据
+	private final String BORROW_INVEST_SHY_URL = "/p2p/borrow_invest/newTender";// 商汇易投资接口
+	private final String CURRENT_HAS_INVEST_BID= "/p2p/borrow_invest/hasInvestedBorrow";// 商汇易投资接口
 
 
 	// 元信宝接口
@@ -3250,18 +3258,18 @@ public class URLGenerator {
 	}
 
 
-//	/**
-//	 * 获取公告、新闻、咨询列表
-//	 *
-//	 * @param order_by
-//	 *            某个字段排序(order_type为默认排序(利率:borrow_interest期限:borrow_period))
-//	 * @param sort
-//	 *            排序方式
-//	 * @param page
-//	 * @param pageSize
-//	 * @return
-//	 * @throws Exception
-//	 */
+	/**
+	 * 获取商汇易投资列表
+	 *
+	 * @param order_by
+	 *            某个字段排序(order_type为默认排序(利率:borrow_interest期限:borrow_period))
+	 * @param sort
+	 *            排序方式
+	 * @param page
+	 * @param pageSize
+	 * @return
+	 * @throws Exception
+	 */
 	public String[] getInvestmentList(String order_by, String sort, String page,
 									  String pageSize) throws Exception {
 		StringBuffer sb = new StringBuffer();
@@ -3273,6 +3281,91 @@ public class URLGenerator {
 		if (sort != null && !"".equals(sort)) {
 			sb.append("&sort=").append(sort);
 		}
+		return new String[] { BASE_URL, sb.toString() };
+	}
+
+	/**
+	 * 标的详情页面
+	 * @param id 标的ID
+	 * @return
+	 * @throws Exception
+	 */
+	public String[] getInvestmentDetail(String id) throws Exception {
+		StringBuffer sb = new StringBuffer();
+		sb.append("_URL_=").append(INVESTMENT_DETAIL_URL).append("&id=")
+				.append(id);
+		return new String[] {BASE_URL, sb.toString() };
+	}
+
+	/**
+	 * 出借记录
+	 * @param borrow_id 标的ID
+	 * @param page
+	 * @param pageSize
+	 * @return
+	 * @throws Exception
+	 */
+	public String[] getLoanRecord(String borrow_id, String page, String pageSize) throws Exception {
+		StringBuffer sb = new StringBuffer();
+		sb.append("_URL_=").append(LOAN_RECORD_URL).append("&borrow_id=")
+				.append(borrow_id).append("&page=").append(page).
+				append("&page_size=").append(pageSize);
+		return new String[] {BASE_URL, sb.toString() };
+	}
+
+	/**
+	 * 投资记录
+	 * @param invest_user_id 投资用户的ID
+	 * @param page
+	 * @param pageSize
+	 * @return
+	 * @throws Exception
+	 */
+	public String[] getInvestmentRecord(String invest_user_id, String page, String pageSize) throws Exception {
+		StringBuffer sb = new StringBuffer();
+		sb.append("_URL_=").append(LOAN_RECORD_URL).append("&invest_user_id=")
+				.append(invest_user_id).append("&page=").append(page).
+				append("&page_size=").append(pageSize);
+		return new String[] {BASE_URL, sb.toString() };
+	}
+
+	/**
+	 * 安全保障
+	 * @param id 标的ID
+	 * @return
+	 * @throws Exception
+	 */
+	public String[] getBorrowInfoSafe(String id) throws Exception {
+		StringBuffer sb = new StringBuffer();
+		sb.append("_URL_=").append(BORROW_INFO_SAFE_URL).append("&id=")
+				.append(id);
+		return new String[] {BASE_URL, sb.toString() };
+	}
+
+	/**
+	 * 商汇易投标接口
+	 *
+	 */
+	public String[] requestShyInvest(String borrow_id, String invest_user_id, String money, String invest_from) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("_URL_=").append(BORROW_INVEST_SHY_URL).append("&borrow_id=")
+				.append(borrow_id).append("&invest_user_id=").append(invest_user_id).
+				append("&money=").append(money).append("&invest_from=").append(invest_from);
+		return new String[] {BASE_URL, sb.toString() };
+	}
+
+	/**
+	 * 判断当前用户是否投资过该标的
+	 *
+	 * @param user_id
+	 * @param borrowId
+	 * @return
+	 */
+	public String[] getCurrentUserHasInvest(String user_id, String borrowId) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("_URL_=").append(CURRENT_HAS_INVEST_BID)
+				.append("&user_id=").append(user_id)
+				.append("&borrow_id=").append(borrowId);
 		return new String[] { BASE_URL, sb.toString() };
 	}
 

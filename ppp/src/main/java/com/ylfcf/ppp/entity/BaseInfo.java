@@ -78,7 +78,44 @@ public class BaseInfo implements java.io.Serializable{
 	private YQYRewardPageInfo mYQYRewardPageInfo;
 	private TLOrderInfo tlOrderInfo;
 
-	private InvestmentListInfo mInvestmentListInfo;
+
+	private InvestmentListInfo mInvestmentListInfo;//投资列表
+	private InvestmentDetail mInvestmentDetail;//投资详情
+	private LoanRecordInfo mLoanRecordInfo;//出借记录
+	private BorrowInfoSafeInfo mBorrowInfoSafeInfo;//安全保障
+	private NewInvestmentRecordInfo mNewInvestmentRecordInfo;
+
+	public NewInvestmentRecordInfo getNewInvestmentRecordInfo() {
+		return mNewInvestmentRecordInfo;
+	}
+
+	public void setNewInvestmentRecordInfo(NewInvestmentRecordInfo newInvestmentRecordInfo) {
+		mNewInvestmentRecordInfo = newInvestmentRecordInfo;
+	}
+
+	public BorrowInfoSafeInfo getBorrowInfoSafeInfo() {
+		return mBorrowInfoSafeInfo;
+	}
+
+	public void setBorrowInfoSafeInfo(BorrowInfoSafeInfo borrowInfoSafeInfo) {
+		mBorrowInfoSafeInfo = borrowInfoSafeInfo;
+	}
+
+	public LoanRecordInfo getLoanRecordInfo() {
+		return mLoanRecordInfo;
+	}
+
+	public void setLoanRecordInfo(LoanRecordInfo loanRecordInfo) {
+		mLoanRecordInfo = loanRecordInfo;
+	}
+
+	public InvestmentDetail getInvestmentDetail() {
+		return mInvestmentDetail;
+	}
+
+	public void setInvestmentDetail(InvestmentDetail investmentDetail) {
+		mInvestmentDetail = investmentDetail;
+	}
 
 	public InvestmentListInfo getInvestmentListInfo() {
 		return mInvestmentListInfo;

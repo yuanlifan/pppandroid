@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/child_background"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_topbar" />
+
+    <ScrollView
+        android:id="@+id/sv_info_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_measure_1dp"
+                android:layout_marginTop="@dimen/common_measure_10dp"
+                android:background="@color/edittext_line_color" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="@dimen/common_measure_15dp"
+                android:text="项目概述"
+                android:textColor="@color/black"
+                android:textSize="@dimen/common_measure_19dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_measure_1dp"
+                android:background="@color/edittext_line_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="@dimen/common_measure_15dp">
+
+                <TextView
+                    android:id="@+id/tv_project_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="项目名称"
+                    android:textColor="@color/gray4"
+                    android:textSize="@dimen/common_measure_18dp" />
+
+                <TextView
+                    android:id="@+id/tv_project_overview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/common_measure_10dp"
+                    android:lineSpacingExtra="@dimen/common_measure_5dp"
+                    android:textColor="@color/gray4"
+                    android:textSize="@dimen/common_measure_17dp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_measure_1dp"
+                android:background="@color/edittext_line_color" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_measure_1dp"
+                android:layout_marginTop="@dimen/common_measure_10dp"
+                android:background="@color/edittext_line_color" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="@dimen/common_measure_15dp"
+                android:text="借款人信息"
+                android:textColor="@color/black"
+                android:textSize="@dimen/common_measure_19dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_measure_1dp"
+                android:background="@color/edittext_line_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="@dimen/common_measure_15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_measure_6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="昵称"
+                        android:textColor="@color/gray3"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                    <TextView
+                        android:id="@+id/tv_borrow_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_measure_18dp"
+                        android:text=""
+                        android:textColor="@color/gray5"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_measure_6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="身份证号"
+                        android:textColor="@color/gray3"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                    <TextView
+                        android:id="@+id/tv_co_id_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_measure_18dp"
+                        android:textColor="@color/gray5"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_measure_6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="法人姓名"
+                        android:textColor="@color/gray3"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                    <TextView
+                        android:id="@+id/tv_co_user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_measure_18dp"
+                        android:textColor="@color/gray5"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_measure_6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="企业名称"
+                        android:textColor="@color/gray3"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                    <TextView
+                        android:id="@+id/tv_co_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_measure_18dp"
+                        android:textColor="@color/gray5"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_measure_6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="成立日期"
+                        android:textColor="@color/gray3"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                    <TextView
+                        android:id="@+id/tv_found_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_measure_18dp"
+                        android:textColor="@color/gray5"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_measure_6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="注册资本"
+                        android:textColor="@color/gray3"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                    <TextView
+                        android:id="@+id/tv_capital"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_measure_18dp"
+                        android:textColor="@color/gray5"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_measure_6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="统一社会信用代码"
+                        android:textColor="@color/gray3"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                    <TextView
+                        android:id="@+id/tv_organization_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_measure_18dp"
+                        android:textColor="@color/gray5"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_measure_6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="公司性质"
+                        android:textColor="@color/gray3"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                    <TextView
+                        android:id="@+id/tv_job_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_measure_18dp"
+                        android:textColor="@color/gray5"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_measure_6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="公司行业"
+                        android:textColor="@color/gray3"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                    <TextView
+                        android:id="@+id/tv_industry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_measure_18dp"
+                        android:textColor="@color/gray5"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_measure_6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="所属商会名称"
+                        android:textColor="@color/gray3"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_measure_18dp"
+                        android:textColor="@color/gray5"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_measure_6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="借款用途"
+                        android:textColor="@color/gray3"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                    <TextView
+                        android:id="@+id/tv_use_purpose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_measure_18dp"
+                        android:textColor="@color/gray5"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_measure_6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="月收入"
+                        android:textColor="@color/gray3"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                    <TextView
+                        android:id="@+id/tv_salary_monthly"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_measure_18dp"
+                        android:textColor="@color/gray5"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_measure_6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="还款来源"
+                        android:textColor="@color/gray3"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                    <TextView
+                        android:id="@+id/tv_repayment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_measure_18dp"
+                        android:textColor="@color/gray5"
+                        android:textSize="@dimen/common_measure_18dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_measure_6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="其他平台借款数量"
+                        android:textColor="@color/gray3"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_measure_18dp"
+                        android:textColor="@color/gray5"
+                        android:textSize="@dimen/common_measure_18dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_measure_6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="其他平台借款总额"
+                        android:textColor="@color/gray3"
+                        android:textSize="@dimen/common_measure_18dp" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common_measure_18dp"
+                        android:textColor="@color/gray5"
+                        android:textSize="@dimen/common_measure_18dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_measure_1dp"
+                android:background="@color/edittext_line_color" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_measure_1dp"
+                android:layout_marginTop="@dimen/common_measure_10dp"
+                android:background="@color/edittext_line_color" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="@dimen/common_measure_15dp"
+                android:text="本平台借贷信息"
+                android:textColor="@color/black"
+                android:textSize="@dimen/common_measure_19dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_measure_1dp"
+                android:background="@color/edittext_line_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="@dimen/common_measure_15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_measure_6dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="申请借款"
+                            android:textColor="@color/gray3"
+                            android:textSize="@dimen/common_measure_18dp" />
+
+                        <TextView
+                            android:layout_marginRight="@dimen/common_measure_80dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/common_measure_18dp"
+                            android:textColor="@color/gray5"
+                            android:textSize="@dimen/common_measure_18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="信用额度"
+                            android:textColor="@color/gray3"
+                            android:textSize="@dimen/common_measure_18dp" />
+
+                        <TextView
+                            android:layout_marginRight="@dimen/common_measure_80dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/common_measure_18dp"
+                            android:textColor="@color/gray5"
+                            android:textSize="@dimen/common_measure_18dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_measure_6dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="成功借款"
+                            android:textColor="@color/gray3"
+                            android:textSize="@dimen/common_measure_18dp" />
+
+                        <TextView
+                            android:id="@+id/tv_success_apply"
+                            android:layout_marginRight="@dimen/common_measure_80dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/common_measure_18dp"
+                            android:textColor="@color/gray5"
+                            android:textSize="@dimen/common_measure_18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="借款总额"
+                            android:textColor="@color/gray3"
+                            android:textSize="@dimen/common_measure_18dp" />
+
+                        <TextView
+                            android:layout_marginRight="@dimen/common_measure_80dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/common_measure_18dp"
+                            android:textColor="@color/gray5"
+                            android:textSize="@dimen/common_measure_18dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_measure_6dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="还清笔数"
+                            android:textColor="@color/gray3"
+                            android:textSize="@dimen/common_measure_18dp" />
+
+                        <TextView
+                            android:layout_marginRight="@dimen/common_measure_80dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/common_measure_18dp"
+                            android:textColor="@color/gray5"
+                            android:textSize="@dimen/common_measure_18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="待还本息"
+                            android:textColor="@color/gray3"
+                            android:textSize="@dimen/common_measure_18dp" />
+
+                        <TextView
+                            android:layout_marginRight="@dimen/common_measure_80dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/common_measure_18dp"
+                            android:textColor="@color/gray5"
+                            android:textSize="@dimen/common_measure_18dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common_measure_6dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="逾期次数"
+                            android:textColor="@color/gray3"
+                            android:textSize="@dimen/common_measure_18dp" />
+
+                        <TextView
+                            android:id="@+id/tv_overdue_num"
+                            android:layout_marginRight="@dimen/common_measure_80dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/common_measure_18dp"
+                            android:textColor="@color/gray5"
+                            android:textSize="@dimen/common_measure_18dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="逾期本额"
+                            android:textColor="@color/gray3"
+                            android:textSize="@dimen/common_measure_18dp" />
+
+                        <TextView
+                            android:id="@+id/tv_overdue_money"
+                            android:layout_marginRight="@dimen/common_measure_80dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/common_measure_18dp"
+                            android:textColor="@color/gray5"
+                            android:textSize="@dimen/common_measure_18dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/common_measure_1dp"
+                        android:background="@color/edittext_line_color" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/common_measure_1dp"
+                        android:layout_marginTop="@dimen/common_measure_10dp"
+                        android:background="@color/edittext_line_color" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_measure_1dp"
+            android:background="@color/edittext_line_color" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_measure_1dp"
+                android:layout_marginTop="@dimen/common_measure_10dp"
+                android:background="@color/edittext_line_color" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="@dimen/common_measure_15dp"
+                android:text="其他相关信息"
+                android:textColor="@color/black"
+                android:textSize="@dimen/common_measure_19dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_measure_1dp"
+                android:background="@color/edittext_line_color" />
+
+            <TextView
+                    android:id="@+id/tv_other_remark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:padding="@dimen/common_measure_15dp"
+                    android:lineSpacingExtra="@dimen/common_measure_5dp"
+                    android:text="其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息其他相关信息"
+                    android:textColor="@color/gray4"
+                    android:textSize="@dimen/common_measure_17dp" />
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/funds_details_yxb_nodata_text"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:text="暂无数据"
+        android:textColor="@color/edittext_hint_color"
+        android:textSize="@dimen/common_measure_20dp"
+        android:visibility="gone"/>
+
+</LinearLayout>

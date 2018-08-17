@@ -276,6 +276,7 @@ public class AccountCenterZHZCFragment extends BaseFragment implements View.OnCl
             case R.id.account_center_zhzc_fragment_jxq_detail_btn:
                 Intent intentJXQ = new Intent(mainActivity, MyJXQActivity.class);
                 startActivity(intentJXQ);
+
                 break;
             case R.id.account_center_zhzc_fragment_zhye_circle:
             case R.id.account_center_zhzc_fragment_zhye_title:

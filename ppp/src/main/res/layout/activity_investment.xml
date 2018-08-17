@@ -49,6 +49,7 @@
     </RelativeLayout>
 
     <ScrollView
+        android:id="@+id/sv_detail_info"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -102,11 +103,12 @@
                     android:textSize="@dimen/common_measure_17dp" />
 
                 <TextView
+                    android:id="@+id/tv_jiezhi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/common_measure_17dp"
                     android:gravity="center"
-                    android:text="投标截止时间：2018-8-1"
+                    android:text="投标截止时间: 2018-8-1"
                     android:textColor="@color/white"
                     android:textSize="@dimen/common_measure_17dp" />
 
@@ -133,10 +135,11 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_surplus_money"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="26,500"
+                            android:text="26500"
                             android:textColor="@color/white"
                             android:textSize="@dimen/common_measure_22dp" />
 
@@ -158,10 +161,11 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_total_money"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="42,400"
+                            android:text="42400"
                             android:textColor="@color/white"
                             android:textSize="@dimen/common_measure_22dp" />
 
@@ -183,6 +187,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_surplus_times"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -224,6 +229,36 @@
                 android:background="@color/edittext_line_color" />
 
             <LinearLayout
+                android:id="@+id/ll_expose_money_info"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_measure_66dp"
+                android:background="@drawable/long_btn_click_selector"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/common_measure_30dp"
+                    android:layout_weight="1"
+                    android:text="标的信息披露"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/common_measure_20dp" />
+
+                <ImageView
+                    android:layout_width="@dimen/common_measure_8dp"
+                    android:layout_height="@dimen/common_measure_12dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="@dimen/common_measure_30dp"
+                    android:background="@drawable/my_account_arrow"
+                    android:scaleType="fitCenter" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_measure_1dp"
+                android:background="@color/edittext_line_color" />
+
+            <LinearLayout
                 android:id="@+id/ll_borrow_money_info"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/common_measure_66dp"
@@ -235,7 +270,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/common_measure_30dp"
                     android:layout_weight="1"
-                    android:text="借款人信息"
+                    android:text="安全保障"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/common_measure_20dp" />
 
@@ -391,5 +426,15 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <TextView
+        android:id="@+id/funds_details_yxb_nodata_text"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:text="暂无数据"
+        android:textColor="@color/edittext_hint_color"
+        android:textSize="@dimen/common_measure_20dp"
+        android:visibility="gone"/>
 
 </LinearLayout>

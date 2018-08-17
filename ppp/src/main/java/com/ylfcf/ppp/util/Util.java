@@ -106,6 +106,27 @@ public class Util {
 		}
 		return Util.double2PointDoubleOne(interestD);
 	}
+
+	/**
+	 * 商汇易预期收益
+	 * @param rate 年化收益
+	 * @param money 投资金额
+	 * @param month 月数
+	 * @return
+	 */
+	public static String getSHYInterest(String rate,int money,String month){
+		double rateD = 0d;
+		int monthI = 0;
+		double interestD = 0d;
+		try {
+			rateD = Double.parseDouble(rate);
+			monthI = Integer.parseInt(month);
+		} catch (Exception e) {
+		}
+		interestD = money * rateD / 100 * monthI /12;
+		return Util.double2PointDoubleOne(interestD);
+	}
+
 	
 	/**
 	 * 判断元月盈是否可以赎回
