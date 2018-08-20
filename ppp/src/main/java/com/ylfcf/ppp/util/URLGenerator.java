@@ -31,9 +31,9 @@ public class URLGenerator {
 //	private static final String API2_DOMAIN_URL = "http://api.dev.ylfcf.com";//
 
 	//测试环境
-	private static final String API_DOMAIN_URL = "http://www.test.ylfcf.com";//API环境
-	private static final String WAP_DOMAIN_URL = "http://wap.test.ylfcf.com";//WAP环境
-	private static final String API2_DOMAIN_URL = "http://api.dev.ylfcf.com";//
+//	private static final String API_DOMAIN_URL = "http://www.test.ylfcf.com";//API环境
+//	private static final String WAP_DOMAIN_URL = "http://wap.test.ylfcf.com";//WAP环境
+//	private static final String API2_DOMAIN_URL = "http://api.dev.ylfcf.com";//
 
 	//朱礼涛开发环境
 //	private static final String API_DOMAIN_URL = "http://www.ylf.com";//API环境
@@ -48,9 +48,9 @@ public class URLGenerator {
 	//杨永豪开发环境
 //	private static final String API_DOMAIN_URL = "http://ww.api.com";//API环境
 
-//	private static final String API_DOMAIN_URL = "http://www.dev_web.com";//API环境
-//	private static final String WAP_DOMAIN_URL = "http://www.ylf_chat.com";//WAP环境
-//	private static final String API2_DOMAIN_URL = "http://api.dev.ylfcf.com";//w
+	private static final String API_DOMAIN_URL = "http://www.dev_web.com";//API环境
+	private static final String WAP_DOMAIN_URL = "http://www.ylf_chat.com";//WAP环境
+	private static final String API2_DOMAIN_URL = "http://api.dev.ylfcf.com";//w
 
 //	private static final String API_DOMAIN_URL = "http://www.web";//API环境
 //	private static final String WAP_DOMAIN_URL = "http://www.ylf_chat.com";//WAP环境

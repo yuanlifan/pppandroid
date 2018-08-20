@@ -684,7 +684,7 @@
             android:name=".ui.BidSHYActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AnimActivityTheme" />
-
+        <activity android:name=".ui.MyContactActivity"></activity>
     </application>
 
 </manifest>

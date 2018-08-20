@@ -474,6 +474,7 @@
         <View
             android:id="@+id/my_account_personal_line2"
             android:layout_width="fill_parent"
+            android:visibility="gone"
             android:layout_height="@dimen/common_measure_1dp"
             android:background="@color/edittext_line_color" />
 
